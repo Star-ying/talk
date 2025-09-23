@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI 角色扮演聊天室</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎭 AI 角色扮演聊天室</h1>
+
+    <!-- 角色选择 -->
+    <select id="characterSelect" onchange="loadCharacter()">
+      <option value="">请选择角色...</option>
+      {% for char in characters %}
+      <option value="{{ char.id }}">{{ char.name }}</option>
+      {% endfor %}
+    </select>
+
+    <!-- 聊天窗口 -->
+    <div id="chatBox"></div>
+
+    <!-- 输入框 -->
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="对角色说点什么..." autofocus
+             onkeypress="if(event.key==='Enter')sendMessage()"/>
+      <button onclick="sendMessage()">发送</button>
+    </div>
+  </div>
+
+  <script>
+    let currentCharacterId = null;
+    const charactersData = { characters_json };
+
+    function loadCharacter() {
+      const select = document.getElementById("characterSelect");
+      const id = parseInt(select.value);
+      if (!id) return;
+
+      currentCharacterId = id;
+      const character = charactersData.find(c => c.id === id);
+      
+      const chatBox = document.getElementById("chatBox");
+      chatBox.innerHTML = `<div class="system">你现在正在与 <strong>${character.name}</strong> 聊天。<br><em>${character.trait}</em></div>`;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (!message || !currentCharacterId) return;
+
+      // 显示用户消息
+      appendMessage("user", message);
+      input.value = "";
+
+      // 请求 AI 回复
+      const response = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ character_id: currentCharacterId, message })
+      });
+
+      const data = await response.json();
+      if (data.reply) {
+        appendMessage("ai", data.reply);
+      } else {
+        appendMessage("ai", "❌ AI 回复失败：" + (data.error || "未知错误"));
+      }
+    }
+
+    function appendMessage(role, text) {
+      const chatBox = document.getElementById("chatBox");
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `message ${role}`;
+      msgDiv.innerText = text;
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;  // 自动滚动到底部
+    }
+  </script>
+</body>
+</html>
