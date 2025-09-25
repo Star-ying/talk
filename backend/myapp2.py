@@ -1,15 +1,15 @@
+import httpx
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from jinja2 import Environment, FileSystemLoader
 import json
-import asyncio
 from dotenv import load_dotenv
 from pathlib import Path
+import os
+from openai import OpenAI
 import uvicorn
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
 
 # 导入数据库操作
 import database
@@ -28,51 +28,14 @@ app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 # Jinja2 模板引擎（用于渲染 HTML）
 template_env = Environment(loader=FileSystemLoader(str(FRONTEND_DIR)))
 
-# 全局变量（在 app 启动时加载一次）
-model = None
-tokenizer = None
-
-def load_model():
-    """同步函数：实际加载模型"""
-    model_name = str(BASE_DIR / "model\deepseek-coder-1.3b-instruct")
-    print("Loading tokenizer...")
-    tok = AutoTokenizer.from_pretrained(model_name)
-    print("Loading model...")
-    m = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-        device_map="auto",
-        low_cpu_mem_usage=True
-    ).eval()
-    return m, tok
-
-async def start_load():
-    global model,tokenizer
-    """在程序启动时，非阻塞地加载模型"""
-    loop = asyncio.get_event_loop()
-    # 使用线程池执行同步加载，避免阻塞事件循环
-    model, tokenizer = await loop.run_in_executor(None, load_model)
-    print("✅ Model loaded during startup!")
-
-def shutdown_event():
-    """在应用关闭时清理资源"""
-    global model, tokenizer
-    if model is not None:
-        del model
-    if tokenizer is not None:
-        del tokenizer
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
-    print("👋 Cleaned up model and CUDA cache on shutdown.")
-
-app.add_event_handler("startup",start_load)
-app.add_event_handler("shutdown",shutdown_event)
-
 @app.get("/", response_class=HTMLResponse)
 async def home(): #挂载网页，连接前端
     template = template_env.get_template("myapp.html")
     characters = database.get_all_characters()
-    characters_json = json.dumps([{ "id": c["id"], "name": c["name"], "trait": c["trait"] } for c in characters], ensure_ascii=False)
+    characters_json = json.dumps([
+        {"id": c["id"], "name": c["name"], "trait": c["trait"]}
+        for c in characters
+    ], ensure_ascii=False)
     content = template.render(characters=characters, characters_json=characters_json)
     return HTMLResponse(content=content)
 
@@ -100,13 +63,14 @@ async def deepseek_chat(request: Request):
 不要暴露你是 AI 的事实。
 """.strip()
 
-    # 👇 关键：使用本地模型进行推理
+    # ✅ 使用 DeepSeek API 进行推理
     try:
+        #本地模型调用
+        """ 
         # 确保模型已加载
         global model, tokenizer
         if model is None or tokenizer is None:
-            return JSONResponse({"error": "模型尚未加载，请先启动模型"}, status_code=500)
-
+           return JSONResponse({"error": "模型尚未加载，请先启动模型"}, status_code=500)
         # 构造对话历史（必须使用 chat template）
         messages = [
             {"role": "system", "content": system_prompt},
@@ -135,6 +99,8 @@ async def deepseek_chat(request: Request):
                 eos_token_id=tokenizer.eos_token_id,
                 pad_token_id=tokenizer.eos_token_id  # 避免 decoder-only 模型 padding 报错
             )
+            response = requests.post("https://api.deepseek.com/v1/chat/completions", ...)
+            reply = response.json()["choices"][0]["message"]["content"]
 
         # 解码输出（去掉输入部分）
         full_response = tokenizer.decode(outputs[0], skip_special_tokens=False)
@@ -150,6 +116,46 @@ async def deepseek_chat(request: Request):
         eot_token = "<|EOT|>"
         if eot_token in reply:
             reply = reply.split(eot_token)[0].strip()
+        """
+        API_KEY = os.getenv("DASHSCOPE_API_KEY")
+        if not API_KEY:
+            return JSONResponse({"error": "API密钥未配置"}, status_code=500)
+
+        headers = {
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+
+        payload = {
+            "model": "qwen-plus",  
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message}
+            ],
+            "temperature": 0.85,
+            "top_p": 0.95,
+            "max_tokens": 512,
+            "stream": False
+        }
+
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+                json=payload,
+                headers=headers,
+                timeout=30.0
+            )
+
+        if response.status_code != 200:
+            error_detail = response.text
+            return JSONResponse(
+                {"error": f"远程API错误 [{response.status_code}]", "detail": error_detail},
+                status_code=response.status_code
+            )
+
+        result = response.json()
+        reply = result["choices"][0]["message"]["content"].strip()
 
         # 保存对话记录
         database.save_conversation(character_id, user_message, reply)
@@ -158,10 +164,12 @@ async def deepseek_chat(request: Request):
 
     except Exception as e:
         import traceback
-        error_msg = traceback.format_exc()  # 更详细的错误日志
-        return JSONResponse({"error": f"推理失败: {str(e)}", "detail": error_msg}, status_code=500)
+        error_msg = traceback.format_exc()
+        return JSONResponse(
+            {"error": f"请求失败: {str(e)}", "detail": error_msg},
+            status_code=500
+        )
 
-# 非llama.cpp实现
 
 if __name__ == "__main__":
-    uvicorn.run("myapp:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("myapp2:app", host="127.0.0.1", port=8000, reload=True)
