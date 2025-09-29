@@ -42,7 +42,16 @@
   <script>
     let currentCharacterId = null;
 
+    function checkAuth() {
+      if (!window.AuthManager.isAuthenticated()) {
+        alert("请先登录！");
+        window.location.href = "/login";
+        document.body.innerHTML = "正在跳转至登录…";
+        throw new Error("未认证");
+      }
+    }
     function loadCharacter() {
+      checkAuth();
       const select = document.getElementById("characterSelect");
       const id = parseInt(select.value);
       if (!id) return;
@@ -52,6 +61,7 @@
     }
 
     async function sendMessage() {
+      checkAuth();
       const input = document.getElementById("userInput");
       const message = input.value.trim();
       if (!message || !currentCharacterId) return;

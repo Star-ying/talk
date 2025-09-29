@@ -47,7 +47,7 @@ app = FastAPI()
 load_dotenv(dotenv_path=BASE_DIR / "backend" / ".env")
 
 # 挂载静态资源
-app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
+app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR / "static")), name="static")
 templates = Jinja2Templates(directory=str(FRONTEND_DIR))
 template_env = Environment(loader=FileSystemLoader(str(FRONTEND_DIR)))
 
