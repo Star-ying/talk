@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎭 AI 角色扮演聊天室</title>
+  <link rel="stylesheet" href="/static/appstyle.css" />
+
+  <!-- 🔁 引入全局认证模块 -->
+  <script src="/static/AuthManager.js" defer></script>
+</head>
+
+<body onload="initChat()">
+  <div class="container">
+    <h1>💬 和你的 AI 对话</h1>
+
+    <!-- 当前角色信息展示 -->
+    <div id="characterInfo" class="info-box">
+      🧠 正在以您设定的角色进行对话...
+    </div>
+
+    <!-- 聊天窗口 -->
+    <div id="chatBox"></div>
+
+    <!-- 输入区域 -->
+    <div class="input-area">
+      <input 
+        type="text" 
+        id="userInput" 
+        placeholder="输入你的消息..." 
+        autofocus 
+        onkeypress="if(event.key==='Enter') sendMessage()" 
+      />
+      <button onclick="sendMessage()">发送</button>
+    </div>
+
+    <!-- 控制按钮区 -->
+    <div style="margin-top: 20px; text-align: center;">
+      <button onclick="clearChat()" style="background-color: #5bc0de; margin-right: 10px;">清空对话</button>
+      <button onclick="AuthManager.logout()" style="background-color: #d9534f;">登出</button>
+    </div>
+  </div>
+
+  <script>
+    // 页面初始化时检查认证，并尝试恢复上下文
+    function initChat() {
+      if (!window.AuthManager.isAuthenticated()) {
+        alert("请先登录！");
+        window.location.href = "/login";
+        return;
+      }
+
+      // 可选：从服务端获取当前用户角色名称，显示在 info 区域
+      loadCharacterInfo();
+      
+      // 欢迎语
+      appendMessage("system", "欢迎回来！你可以开始聊天了。");
+    }
+
+    // 获取用户角色描述（可选增强体验）
+    async function loadCharacterInfo() {
+      try {
+        const res = await AuthManager.request("/user1/profile", { method: "GET" });
+        const data = await res.json();
+        const personality = data.personality || "无明确性格";
+        const roleSetting = data.role_setting?.substring(0, 50) + "..." || "自定义角色";
+
+        document.getElementById("characterInfo").innerHTML = `
+          <strong>当前角色设定：</strong><br/>
+          性格：<em>${personality}</em><br/>
+          提示词：<em>${roleSetting}</em>
+        `;
+      } catch (err) {
+        console.warn("无法加载角色信息", err);
+      }
+    }
+
+    // 发送消息
+    async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+
+      if (!message) return;
+      if (!window.AuthManager.isAuthenticated()) {
+        alert("会话已过期，请重新登录");
+        window.location.href = "/login";
+        return;
+      }
+
+      // 显示用户消息
+      appendMessage("user", message);
+      input.value = "";
+
+      try {
+        const response = await AuthManager.request("/user1/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ message })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.reply) {
+          appendMessage("ai", data.reply);
+        } else {
+          appendMessage("ai", `❌ ${data.message || data.error || "AI 返回错误"}`);
+        }
+      } catch (error) {
+        console.error("发送失败:", error);
+        if (error.message.includes("未登录")) {
+          alert("登录已失效，请重新登录");
+          window.location.href = "/login";
+        } else {
+          appendMessage("ai", "⚠️ 网络异常或服务器错误，请稍后再试。");
+        }
+      }
+    }
+
+    // 添加消息到聊天框
+    function appendMessage(role, text) {
+      const chatBox = document.getElementById("chatBox");
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `message ${role}`;
+      msgDiv.innerText = text;
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight; // 自动滚动到底部
+    }
+
+    // 清空聊天记录
+    function clearChat() {
+      if (confirm("确定要清空所有聊天记录吗？")) {
+        document.getElementById("chatBox").innerHTML = "";
+        appendMessage("system", "聊天记录已清空。");
+      }
+    }
+  </script>
+</body>
+
+</html>

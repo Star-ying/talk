@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>设置你的AI角色</title></head>
+<body>
+  <h1>✨ 设置你的专属AI角色</h1>
+  <form method="post" action="/set-role">
+    <label>性格描述：<br/>
+      <input type="text" name="personality" placeholder="例如：温柔、幽默、理性" required style="width:300px"/>
+    </label><br/><br/>
+
+    <label>角色设定（Prompt）：<br/>
+      <textarea name="role_setting" rows="6" cols="50" placeholder="例如：你是一位资深心理咨询师，擅长倾听和共情..." required></textarea>
+    </label><br/><br/>
+
+    <button type="submit">保存并加载模型</button>
+  </form>
+
+  {% if error %}
+    <p style="color:red;">❌ {{ error }}</p>
+  {% endif %}
+</body>
+</html>

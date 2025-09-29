@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>正在加载模型...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    .spinner {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .info {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .error {
+      color: #e74c3c;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #e74c3c;
+      border-radius: 8px;
+      background-color: #fdf2f2;
+    }
+
+    .btn-retry {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="spinner"></div>
+  <h2>{{ message }}</h2>
+  <p class="info">AI 模型正在后台加载，请稍候...</p>
+  <p id="statusText">检查加载状态中...</p>
+
+  <div id="errorBox" class="error" style="display:none;"></div>
+
+  <script>
+    const MAX_RETRIES = 60;   // 最多尝试 60 次
+    const INTERVAL = 1000;    // 每隔 1s 查询一次
+    let retries = 0;
+
+    function checkStatus() {
+      fetch('/user1/model-status')
+        .then(res => res.json())
+        .then(data => {
+          if (data.loaded) {
+            document.getElementById("statusText").textContent = "✅ 模型已准备就绪！正在跳转...";
+            setTimeout(() => {
+              window.location.href = "/user1";  // 跳转到聊天页
+            }, 800);
+            return;
+          }
+
+          // 继续轮询
+          retries++;
+          if (retries < MAX_RETRIES) {
+            setTimeout(checkStatus, INTERVAL);
+            document.getElementById("statusText").textContent = `🔄 加载中... (${retries}s)`;
+          } else {
+            document.getElementById("statusText").textContent = "⏰ 超时：模型加载过慢";
+            document.getElementById("errorBox").textContent = "模型加载超时，请联系管理员或重试。";
+            document.getElementById("errorBox").style.display = "block";
+          }
+        })
+        .catch(err => {
+          console.error("请求 model-status 失败:", err);
+          document.getElementById("statusText").textContent = "⚠️ 网络错误";
+          document.getElementById("errorBox").textContent = "无法连接服务器，请检查网络。";
+          document.getElementById("errorBox").style.display = "block";
+        });
+    }
+
+    // 页面加载完成后开始轮询
+    window.onload = () => {
+      checkStatus();
+    };
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1003 @@
+2025-09-30 14:44:23,675 | ERROR | Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-09-30 14:50:06,569 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 14:50:06,570 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:06,573 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:06,611 | INFO | ➡️  GET /static/homestyle.css from 127.0.0.1
+2025-09-30 14:50:06,612 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:06,612 | INFO | ➡️  GET /static/AuthManager.js from 127.0.0.1
+2025-09-30 14:50:06,614 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:06,761 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:06,762 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:06,844 | INFO | ➡️  GET /favicon.ico from 127.0.0.1
+2025-09-30 14:50:06,845 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:06,845 | INFO | ⬅️  Response status: 404
+2025-09-30 14:50:08,456 | INFO | ➡️  GET /user1 from 127.0.0.1
+2025-09-30 14:50:08,457 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:08,500 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:08,506 | INFO | ➡️  GET /static/appstyle.css from 127.0.0.1
+2025-09-30 14:50:08,508 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:08,509 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:09,693 | INFO | ➡️  GET /login from 127.0.0.1
+2025-09-30 14:50:09,693 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:09,696 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:09,706 | INFO | ➡️  GET /static/login.css from 127.0.0.1
+2025-09-30 14:50:09,707 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:09,708 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:17,193 | INFO | ➡️  POST /login from 127.0.0.1
+2025-09-30 14:50:17,193 | INFO | 👤 User ID: Not logged in
+2025-09-30 14:50:17,360 | INFO | 🔐 User 7 logged in successfully
+2025-09-30 14:50:17,361 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:18,379 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 14:50:18,382 | INFO | 👤 User ID: 7
+2025-09-30 14:50:18,383 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:19,672 | INFO | ➡️  GET /user1 from 127.0.0.1
+2025-09-30 14:50:19,673 | INFO | 👤 User ID: 7
+2025-09-30 14:50:19,674 | INFO | ⬅️  Response status: 200
+2025-09-30 14:50:19,685 | INFO | ➡️  GET /user2/profile from 127.0.0.1
+2025-09-30 14:50:19,687 | INFO | 👤 User ID: 7
+2025-09-30 14:50:19,687 | INFO | ⬅️  Response status: 404
+2025-09-30 14:51:22,842 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 14:51:22,843 | INFO | 👤 User ID: 7
+2025-09-30 14:51:22,846 | INFO | ⬅️  Response status: 200
+2025-09-30 14:51:28,760 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 14:51:28,761 | INFO | 👤 User ID: 7
+2025-09-30 14:51:28,761 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 14:51:28,772 | INFO | User 7 has no profile, redirecting to /set-role
+2025-09-30 14:51:28,773 | INFO | ⬅️  Response status: 307
+2025-09-30 14:51:28,780 | INFO | ➡️  GET /set-role from 127.0.0.1
+2025-09-30 14:51:28,780 | INFO | 👤 User ID: 7
+2025-09-30 14:51:28,782 | INFO | ⬅️  Response status: 200
+2025-09-30 14:53:23,284 | INFO | ➡️  POST /set-role from 127.0.0.1
+2025-09-30 14:53:23,284 | INFO | 👤 User ID: 7
+2025-09-30 14:53:23,285 | INFO | 📋 User 7 accessing /set_role from IP: 127.0.0.1
+2025-09-30 14:53:23,302 | INFO | ✅ Profile saved for user 7
+2025-09-30 14:53:23,304 | INFO | ⬅️  Response status: 303
+2025-09-30 14:53:23,312 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 14:53:23,313 | INFO | 👤 User ID: 7
+2025-09-30 14:53:23,313 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 14:53:23,323 | INFO | ⬅️  Response status: 200
+2025-09-30 14:53:26,354 | INFO | ➡️  GET /chat from 127.0.0.1
+2025-09-30 14:53:26,354 | INFO | 👤 User ID: 7
+2025-09-30 14:53:26,354 | INFO | ⬅️  Response status: 404
+2025-09-30 14:54:10,761 | INFO | ➡️  GET /chat from 127.0.0.1
+2025-09-30 14:54:10,761 | INFO | 👤 User ID: 7
+2025-09-30 14:54:10,761 | INFO | ⬅️  Response status: 404
+2025-09-30 14:54:17,256 | INFO | ➡️  POST /set-role from 127.0.0.1
+2025-09-30 14:54:17,256 | INFO | 👤 User ID: 7
+2025-09-30 14:54:17,258 | INFO | 📋 User 7 accessing /set_role from IP: 127.0.0.1
+2025-09-30 14:54:17,268 | INFO | ✅ Profile saved for user 7
+2025-09-30 14:54:17,269 | INFO | ⬅️  Response status: 303
+2025-09-30 14:54:17,273 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 14:54:17,274 | INFO | 👤 User ID: 7
+2025-09-30 14:54:17,274 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 14:54:17,302 | INFO | ⬅️  Response status: 200
+2025-09-30 14:54:20,331 | INFO | ➡️  GET /user1 from 127.0.0.1
+2025-09-30 14:54:20,331 | INFO | 👤 User ID: 7
+2025-09-30 14:54:20,332 | INFO | ⬅️  Response status: 200
+2025-09-30 14:54:20,344 | INFO | ➡️  GET /user2/profile from 127.0.0.1
+2025-09-30 14:54:20,344 | INFO | 👤 User ID: 7
+2025-09-30 14:54:20,345 | INFO | ⬅️  Response status: 404
+2025-09-30 14:56:47,767 | INFO | ➡️  GET /static/appstyle.css from 127.0.0.1
+2025-09-30 14:56:47,767 | INFO | 👤 User ID: 7
+2025-09-30 14:56:47,768 | INFO | ⬅️  Response status: 304
+2025-09-30 14:56:47,784 | INFO | ➡️  GET /.well-known/appspecific/com.chrome.devtools.json from 127.0.0.1
+2025-09-30 14:56:47,785 | INFO | 👤 User ID: 7
+2025-09-30 14:56:47,785 | INFO | ⬅️  Response status: 404
+2025-09-30 14:56:54,154 | INFO | ➡️  GET /user2/profile from 127.0.0.1
+2025-09-30 14:56:54,155 | INFO | 👤 User ID: 7
+2025-09-30 14:56:54,155 | INFO | ⬅️  Response status: 404
+2025-09-30 14:57:41,174 | INFO | ➡️  GET /user1 from 127.0.0.1
+2025-09-30 14:57:41,174 | INFO | 👤 User ID: 7
+2025-09-30 14:57:41,215 | INFO | ⬅️  Response status: 200
+2025-09-30 14:57:41,223 | INFO | ➡️  GET /static/AuthManager.js from 127.0.0.1
+2025-09-30 14:57:41,224 | INFO | 👤 User ID: 7
+2025-09-30 14:57:41,225 | INFO | ⬅️  Response status: 304
+2025-09-30 14:57:41,233 | INFO | ➡️  GET /user1/profile from 127.0.0.1
+2025-09-30 14:57:41,233 | INFO | 👤 User ID: 7
+2025-09-30 14:57:41,244 | INFO | ⬅️  Response status: 200
+2025-09-30 14:57:41,249 | INFO | ➡️  GET /.well-known/appspecific/com.chrome.devtools.json from 127.0.0.1
+2025-09-30 14:57:41,250 | INFO | 👤 User ID: 7
+2025-09-30 14:57:41,250 | INFO | ⬅️  Response status: 404
+2025-09-30 14:57:46,954 | INFO | ➡️  POST /user1/chat from 127.0.0.1
+2025-09-30 14:57:46,955 | INFO | 👤 User ID: 7
+2025-09-30 14:57:46,963 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:33,427 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 15:31:33,436 | INFO | 👤 User ID: Not logged in
+2025-09-30 15:31:33,439 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:33,467 | INFO | ➡️  GET /static/homestyle.css from 127.0.0.1
+2025-09-30 15:31:33,468 | INFO | 👤 User ID: Not logged in
+2025-09-30 15:31:33,470 | INFO | ➡️  GET /static/AuthManager.js from 127.0.0.1
+2025-09-30 15:31:33,470 | INFO | 👤 User ID: Not logged in
+2025-09-30 15:31:33,600 | INFO | ⬅️  Response status: 304
+2025-09-30 15:31:33,600 | INFO | ⬅️  Response status: 304
+2025-09-30 15:31:35,372 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 15:31:35,373 | INFO | 👤 User ID: Not logged in
+2025-09-30 15:31:35,373 | INFO | 📋 User None accessing /loading from IP: 127.0.0.1
+2025-09-30 15:31:35,373 | WARNING | 🚫 Unauthorized access to /loading from IP: 127.0.0.1
+2025-09-30 15:31:35,374 | INFO | ⬅️  Response status: 307
+2025-09-30 15:31:35,381 | INFO | ➡️  GET /login from 127.0.0.1
+2025-09-30 15:31:35,381 | INFO | 👤 User ID: Not logged in
+2025-09-30 15:31:35,384 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:35,394 | INFO | ➡️  GET /static/login.css from 127.0.0.1
+2025-09-30 15:31:35,394 | INFO | 👤 User ID: Not logged in
+2025-09-30 15:31:35,396 | INFO | ⬅️  Response status: 304
+2025-09-30 15:31:42,901 | INFO | ➡️  POST /login from 127.0.0.1
+2025-09-30 15:31:42,901 | INFO | 👤 User ID: Not logged in
+2025-09-30 15:31:42,962 | INFO | 🔐 User 7 logged in successfully
+2025-09-30 15:31:42,963 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:44,241 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 15:31:44,241 | INFO | 👤 User ID: 7
+2025-09-30 15:31:44,242 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:46,301 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 15:31:46,301 | INFO | 👤 User ID: 7
+2025-09-30 15:31:46,302 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 15:31:46,346 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:46,355 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:46,355 | INFO | 👤 User ID: 7
+2025-09-30 15:31:46,356 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:47,368 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:47,369 | INFO | 👤 User ID: 7
+2025-09-30 15:31:47,369 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:48,375 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:48,375 | INFO | 👤 User ID: 7
+2025-09-30 15:31:48,376 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:49,381 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:49,381 | INFO | 👤 User ID: 7
+2025-09-30 15:31:49,383 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:50,388 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:50,389 | INFO | 👤 User ID: 7
+2025-09-30 15:31:50,390 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:51,399 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:51,400 | INFO | 👤 User ID: 7
+2025-09-30 15:31:51,400 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:52,586 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:52,587 | INFO | 👤 User ID: 7
+2025-09-30 15:31:52,588 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:54,597 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:54,598 | INFO | 👤 User ID: 7
+2025-09-30 15:31:54,599 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:56,585 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:56,586 | INFO | 👤 User ID: 7
+2025-09-30 15:31:56,586 | INFO | ⬅️  Response status: 200
+2025-09-30 15:31:58,590 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:31:58,592 | INFO | 👤 User ID: 7
+2025-09-30 15:31:58,593 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:00,590 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:00,592 | INFO | 👤 User ID: 7
+2025-09-30 15:32:00,593 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:02,593 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:02,593 | INFO | 👤 User ID: 7
+2025-09-30 15:32:02,594 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:04,594 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:04,596 | INFO | 👤 User ID: 7
+2025-09-30 15:32:04,597 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:06,585 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:06,586 | INFO | 👤 User ID: 7
+2025-09-30 15:32:06,587 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:08,592 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:08,593 | INFO | 👤 User ID: 7
+2025-09-30 15:32:08,594 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:10,596 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:10,597 | INFO | 👤 User ID: 7
+2025-09-30 15:32:10,597 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:12,585 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:12,586 | INFO | 👤 User ID: 7
+2025-09-30 15:32:12,586 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:14,583 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:14,585 | INFO | 👤 User ID: 7
+2025-09-30 15:32:14,585 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:16,588 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:16,588 | INFO | 👤 User ID: 7
+2025-09-30 15:32:16,589 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:18,589 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:18,590 | INFO | 👤 User ID: 7
+2025-09-30 15:32:18,591 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:20,592 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:20,593 | INFO | 👤 User ID: 7
+2025-09-30 15:32:20,594 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:22,586 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:22,586 | INFO | 👤 User ID: 7
+2025-09-30 15:32:22,587 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:24,593 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:24,595 | INFO | 👤 User ID: 7
+2025-09-30 15:32:24,595 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:26,587 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:26,587 | INFO | 👤 User ID: 7
+2025-09-30 15:32:26,588 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:28,593 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:28,593 | INFO | 👤 User ID: 7
+2025-09-30 15:32:28,594 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:30,599 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:30,601 | INFO | 👤 User ID: 7
+2025-09-30 15:32:30,601 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:42,398 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:42,409 | INFO | 👤 User ID: 7
+2025-09-30 15:32:42,413 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:43,420 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:43,420 | INFO | 👤 User ID: 7
+2025-09-30 15:32:43,421 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:44,424 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:32:44,425 | INFO | 👤 User ID: 7
+2025-09-30 15:32:44,425 | INFO | ⬅️  Response status: 200
+2025-09-30 15:32:58,645 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 15:32:58,646 | INFO | 👤 User ID: 7
+2025-09-30 15:32:58,646 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 15:33:17,186 | WARNING | Some parameters are on the meta device because they were offloaded to the disk and cpu.
+2025-09-30 15:33:17,190 | INFO | ⬅️  Response status: 200
+2025-09-30 15:33:17,203 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:33:17,204 | INFO | 👤 User ID: 7
+2025-09-30 15:33:17,205 | INFO | ⬅️  Response status: 200
+2025-09-30 15:33:18,609 | INFO | ➡️  GET /user1/chat from 127.0.0.1
+2025-09-30 15:33:18,610 | INFO | 👤 User ID: 7
+2025-09-30 15:33:18,611 | INFO | ⬅️  Response status: 405
+2025-09-30 15:36:16,924 | INFO | ➡️  GET /user1/chat from 127.0.0.1
+2025-09-30 15:36:16,934 | INFO | 👤 User ID: 7
+2025-09-30 15:36:16,934 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 15:36:16,934 | INFO | 👤 User ID: 7
+2025-09-30 15:36:16,935 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 15:36:16,964 | ERROR | [ERROR] During /loading: asyncio.run() cannot be called from a running event loop
+2025-09-30 15:36:16,964 | INFO | ⬅️  Response status: 405
+2025-09-30 15:36:16,964 | INFO | ⬅️  Response status: 500
+2025-09-30 15:36:36,903 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 15:36:36,904 | INFO | 👤 User ID: 7
+2025-09-30 15:36:36,904 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 15:36:36,916 | ERROR | [ERROR] During /loading: asyncio.run() cannot be called from a running event loop
+2025-09-30 15:36:36,917 | INFO | ⬅️  Response status: 500
+2025-09-30 15:36:39,515 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 15:36:39,516 | INFO | 👤 User ID: 7
+2025-09-30 15:36:39,516 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 15:36:39,531 | ERROR | [ERROR] During /loading: asyncio.run() cannot be called from a running event loop
+2025-09-30 15:36:39,532 | INFO | ⬅️  Response status: 500
+2025-09-30 15:42:39,231 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 15:42:39,240 | INFO | 👤 User ID: 7
+2025-09-30 15:42:39,243 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:39,251 | INFO | ➡️  GET /static/homestyle.css from 127.0.0.1
+2025-09-30 15:42:39,251 | INFO | 👤 User ID: 7
+2025-09-30 15:42:39,252 | INFO | ➡️  GET /static/AuthManager.js from 127.0.0.1
+2025-09-30 15:42:39,253 | INFO | 👤 User ID: 7
+2025-09-30 15:42:39,375 | INFO | ⬅️  Response status: 304
+2025-09-30 15:42:39,376 | INFO | ⬅️  Response status: 304
+2025-09-30 15:42:40,566 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 15:42:40,566 | INFO | 👤 User ID: 7
+2025-09-30 15:42:40,567 | INFO | 📋 User 7 accessing /loading from IP: 127.0.0.1
+2025-09-30 15:42:40,632 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:40,642 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:40,643 | INFO | 👤 User ID: 7
+2025-09-30 15:42:40,644 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:41,649 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:41,649 | INFO | 👤 User ID: 7
+2025-09-30 15:42:41,651 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:42,655 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:42,656 | INFO | 👤 User ID: 7
+2025-09-30 15:42:42,657 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:44,597 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:44,597 | INFO | 👤 User ID: 7
+2025-09-30 15:42:44,599 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:46,593 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:46,594 | INFO | 👤 User ID: 7
+2025-09-30 15:42:46,595 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:48,584 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:48,585 | INFO | 👤 User ID: 7
+2025-09-30 15:42:48,586 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:50,595 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:50,596 | INFO | 👤 User ID: 7
+2025-09-30 15:42:50,597 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:52,644 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:52,667 | INFO | 👤 User ID: 7
+2025-09-30 15:42:52,742 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:54,594 | INFO | ➡️  GET /user1/model-status from 127.0.0.1
+2025-09-30 15:42:54,595 | INFO | 👤 User ID: 7
+2025-09-30 15:42:54,597 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:55,420 | INFO | ➡️  GET /user1 from 127.0.0.1
+2025-09-30 15:42:55,421 | INFO | 👤 User ID: 7
+2025-09-30 15:42:55,438 | INFO | ⬅️  Response status: 200
+2025-09-30 15:42:55,466 | INFO | ➡️  GET /static/appstyle.css from 127.0.0.1
+2025-09-30 15:42:55,467 | INFO | 👤 User ID: 7
+2025-09-30 15:42:55,469 | INFO | ⬅️  Response status: 304
+2025-09-30 15:42:55,506 | INFO | ➡️  GET /user1/profile from 127.0.0.1
+2025-09-30 15:42:55,506 | INFO | 👤 User ID: 7
+2025-09-30 15:42:55,567 | INFO | ⬅️  Response status: 200
+2025-09-30 15:43:13,965 | INFO | ➡️  POST /user1/chat from 127.0.0.1
+2025-09-30 15:43:13,966 | INFO | 👤 User ID: 7
+2025-09-30 15:43:13,978 | INFO | ⬅️  Response status: 200
+2025-09-30 16:41:37,718 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 16:41:37,730 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:37,734 | INFO | ⬅️  Response status: 200
+2025-09-30 16:41:37,771 | INFO | ➡️  GET /static/homestyle.css from 127.0.0.1
+2025-09-30 16:41:37,772 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:37,773 | INFO | ➡️  GET /static/AuthManager.js from 127.0.0.1
+2025-09-30 16:41:37,774 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:37,904 | INFO | ⬅️  Response status: 304
+2025-09-30 16:41:37,905 | INFO | ⬅️  Response status: 304
+2025-09-30 16:41:39,721 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-09-30 16:41:39,722 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:39,722 | INFO | 📋 User None accessing /user2 from IP: 127.0.0.1
+2025-09-30 16:41:39,722 | WARNING | 🚫 Unauthorized access to /user2 from IP: 127.0.0.1
+2025-09-30 16:41:39,723 | INFO | ⬅️  Response status: 307
+2025-09-30 16:41:39,729 | INFO | ➡️  GET /login from 127.0.0.1
+2025-09-30 16:41:39,730 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:39,731 | INFO | ⬅️  Response status: 200
+2025-09-30 16:41:39,742 | INFO | ➡️  GET /static/login.css from 127.0.0.1
+2025-09-30 16:41:39,742 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:39,744 | INFO | ⬅️  Response status: 304
+2025-09-30 16:41:45,080 | INFO | ➡️  POST /login from 127.0.0.1
+2025-09-30 16:41:45,081 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:45,108 | INFO | SELECT DATABASE()
+2025-09-30 16:41:45,109 | INFO | [raw sql] ()
+2025-09-30 16:41:45,111 | INFO | SELECT @@sql_mode
+2025-09-30 16:41:45,113 | INFO | [raw sql] ()
+2025-09-30 16:41:45,114 | INFO | SELECT @@lower_case_table_names
+2025-09-30 16:41:45,115 | INFO | [raw sql] ()
+2025-09-30 16:41:45,257 | INFO | BEGIN (implicit)
+2025-09-30 16:41:45,258 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-09-30 16:41:45,258 | INFO | [generated in 0.00037s] ('Starying789',)
+2025-09-30 16:41:45,260 | INFO | ROLLBACK
+2025-09-30 16:41:45,283 | WARNING | Login failed: wrong password for user Starying789
+2025-09-30 16:41:45,283 | INFO | ⬅️  Response status: 401
+2025-09-30 16:41:49,736 | INFO | ➡️  POST /login from 127.0.0.1
+2025-09-30 16:41:49,737 | INFO | 👤 User ID: Not logged in
+2025-09-30 16:41:49,787 | INFO | BEGIN (implicit)
+2025-09-30 16:41:49,787 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-09-30 16:41:49,788 | INFO | [cached since 4.53s ago] ('Starying789',)
+2025-09-30 16:41:49,788 | INFO | ROLLBACK
+2025-09-30 16:41:49,802 | INFO | 🔐 User 7 logged in successfully
+2025-09-30 16:41:49,802 | INFO | ⬅️  Response status: 200
+2025-09-30 16:41:50,698 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 16:41:50,698 | INFO | 👤 User ID: 7
+2025-09-30 16:41:50,699 | INFO | ⬅️  Response status: 200
+2025-09-30 16:41:52,142 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-09-30 16:41:52,142 | INFO | 👤 User ID: 7
+2025-09-30 16:41:52,143 | INFO | 📋 User 7 accessing /user2 from IP: 127.0.0.1
+2025-09-30 16:41:52,146 | INFO | BEGIN (implicit)
+2025-09-30 16:41:52,147 | INFO | SELECT * FROM characters ORDER BY name
+2025-09-30 16:41:52,147 | INFO | [generated in 0.00039s] ()
+2025-09-30 16:41:52,149 | INFO | ROLLBACK
+2025-09-30 16:41:52,150 | INFO | ⬅️  Response status: 200
+2025-09-30 16:41:52,161 | INFO | ➡️  GET /static/appstyle.css from 127.0.0.1
+2025-09-30 16:41:52,162 | INFO | 👤 User ID: 7
+2025-09-30 16:41:52,165 | INFO | ⬅️  Response status: 304
+2025-09-30 16:41:58,788 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-09-30 16:41:58,788 | INFO | 👤 User ID: 7
+2025-09-30 16:41:58,790 | INFO | 💬 User 7 sending message from 127.0.0.1
+2025-09-30 16:41:58,792 | INFO | BEGIN (implicit)
+2025-09-30 16:41:58,792 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-09-30 16:41:58,793 | INFO | [generated in 0.00039s] (4,)
+2025-09-30 16:41:58,794 | INFO | ROLLBACK
+2025-09-30 16:42:02,429 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 16:42:02,432 | INFO | BEGIN (implicit)
+2025-09-30 16:42:02,432 | INFO | 
+                    INSERT INTO `conversations_7`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-09-30 16:42:02,433 | INFO | [generated in 0.00048s] (4, '你好', '啊，您好...今天璃月港的天气真是不错呢。刚忙完一些文件工作，正好出来透透气。*整理了下衣领，微微抬头看向您*\n\n不知道您需要帮忙吗？虽然我可能不是最擅长处理所有事情...但会尽力而为的。')
+2025-09-30 16:42:02,436 | INFO | ROLLBACK
+2025-09-30 16:42:02,444 | CRITICAL | 💥 Unexpected error in /user2/chat:
+Traceback (most recent call last):
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+  File "E:\Python311\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 192, in execute
+    self._adapt_connection._handle_exception(error)
+  File "E:\Python311\Lib\site-packages\sqlalchemy\dialects\mysql\asyncmy.py", line 88, in _handle_exception
+    raise error
+  File "E:\Python311\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 190, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 213, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncmy\\cursors.pyx", line 179, in execute
+  File "asyncmy\\cursors.pyx", line 364, in _query
+  File "asyncmy\\connection.pyx", line 496, in query
+  File "asyncmy\\connection.pyx", line 684, in _read_query_result
+  File "asyncmy\\connection.pyx", line 1071, in read
+  File "asyncmy\\connection.pyx", line 646, in read_packet
+  File "asyncmy\\protocol.pyx", line 190, in asyncmy.protocol.MysqlPacket.raise_for_error
+  File "asyncmy\\protocol.pyx", line 194, in asyncmy.protocol.MysqlPacket.raise_for_error
+  File "asyncmy\\errors.pyx", line 128, in asyncmy.errors.raise_mysql_exception
+  File "asyncmy\\errors.pyx", line 137, in asyncmy.errors.raise_mysql_exception
+asyncmy.errors.ProgrammingError: (1146, "Table 'ai_roleplay.conversations_7' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\程序员的日常\python\MyAI\backend\database.py", line 103, in save_conversation
+    await db.execute(
+  File "E:\Python311\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "E:\Python311\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+  File "E:\Python311\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 192, in execute
+    self._adapt_connection._handle_exception(error)
+  File "E:\Python311\Lib\site-packages\sqlalchemy\dialects\mysql\asyncmy.py", line 88, in _handle_exception
+    raise error
+  File "E:\Python311\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 190, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "E:\Python311\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 213, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncmy\\cursors.pyx", line 179, in execute
+  File "asyncmy\\cursors.pyx", line 364, in _query
+  File "asyncmy\\connection.pyx", line 496, in query
+  File "asyncmy\\connection.pyx", line 684, in _read_query_result
+  File "asyncmy\\connection.pyx", line 1071, in read
+  File "asyncmy\\connection.pyx", line 646, in read_packet
+  File "asyncmy\\protocol.pyx", line 190, in asyncmy.protocol.MysqlPacket.raise_for_error
+  File "asyncmy\\protocol.pyx", line 194, in asyncmy.protocol.MysqlPacket.raise_for_error
+  File "asyncmy\\errors.pyx", line 128, in asyncmy.errors.raise_mysql_exception
+  File "asyncmy\\errors.pyx", line 137, in asyncmy.errors.raise_mysql_exception
+sqlalchemy.exc.ProgrammingError: (asyncmy.errors.ProgrammingError) (1146, "Table 'ai_roleplay.conversations_7' doesn't exist")
+[SQL: 
+                    INSERT INTO `conversations_7`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                ]
+[parameters: (4, '你好', '啊，您好...今天璃月港的天气真是不错呢。刚忙完一些文件工作，正好出来透透气。*整理了下衣领，微微抬头看向您*\n\n不知道您需要帮忙吗？虽然我可能不是最擅长处理所有事情...但会尽力而为的。')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\程序员的日常\python\MyAI\backend\myapp.py", line 498, in dashscope_chat
+    await database.save_conversation(int(current_user_id), character_id, user_message, reply)
+  File "d:\程序员的日常\python\MyAI\backend\database.py", line 118, in save_conversation
+    raise Exception(f"[DB] Failed to save conversation for user {user_id}: {e}")
+Exception: [DB] Failed to save conversation for user 7: (asyncmy.errors.ProgrammingError) (1146, "Table 'ai_roleplay.conversations_7' doesn't exist")
+[SQL: 
+                    INSERT INTO `conversations_7`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                ]
+[parameters: (4, '你好', '啊，您好...今天璃月港的天气真是不错呢。刚忙完一些文件工作，正好出来透透气。*整理了下衣领，微微抬头看向您*\n\n不知道您需要帮忙吗？虽然我可能不是最擅长处理所有事情...但会尽力而为的。')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+2025-09-30 16:42:02,446 | INFO | ⬅️  Response status: 500
+2025-09-30 16:42:54,950 | INFO | ➡️  GET /login from 127.0.0.1
+2025-09-30 16:42:54,950 | INFO | 👤 User ID: 7
+2025-09-30 16:42:54,950 | INFO | ⬅️  Response status: 200
+2025-09-30 16:43:03,095 | INFO | ➡️  POST /login from 127.0.0.1
+2025-09-30 16:43:03,095 | INFO | 👤 User ID: 7
+2025-09-30 16:43:03,110 | INFO | BEGIN (implicit)
+2025-09-30 16:43:03,111 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-09-30 16:43:03,111 | INFO | [cached since 77.85s ago] ('Starying789',)
+2025-09-30 16:43:03,112 | INFO | 
+                INSERT INTO users (account, password)
+                VALUES (%s, %s)
+            
+2025-09-30 16:43:03,112 | INFO | [generated in 0.00042s] ('Starying789', '$pbkdf2-sha256$29000$4TyHkDLmPMf4H8MYQyhF6A$4moAr9xkqY20S97U.y21uBVoEGJbHqd.MgxD/MVABzs')
+2025-09-30 16:43:03,115 | INFO | COMMIT
+2025-09-30 16:43:03,120 | INFO | BEGIN (implicit)
+2025-09-30 16:43:03,120 | INFO | SELECT LAST_INSERT_ID()
+2025-09-30 16:43:03,121 | INFO | [generated in 0.00042s] ()
+2025-09-30 16:43:03,122 | INFO | 
+                CREATE TABLE IF NOT EXISTS `conversations_9` (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    character_id INT,
+                    user_message TEXT,
+                    ai_message TEXT,
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (character_id) REFERENCES characters(id) ON DELETE CASCADE
+                ) ENGINE=InnoDB CHARSET=utf8mb4;
+            
+2025-09-30 16:43:03,122 | INFO | [generated in 0.00072s] ()
+2025-09-30 16:43:03,162 | INFO | COMMIT
+2025-09-30 16:43:03,176 | INFO | 🔐 User 9 logged in successfully
+2025-09-30 16:43:03,176 | INFO | ⬅️  Response status: 200
+2025-09-30 16:43:04,272 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 16:43:04,273 | INFO | 👤 User ID: 9
+2025-09-30 16:43:04,273 | INFO | ⬅️  Response status: 200
+2025-09-30 16:43:07,514 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-09-30 16:43:07,514 | INFO | 👤 User ID: 9
+2025-09-30 16:43:07,515 | INFO | 📋 User 9 accessing /user2 from IP: 127.0.0.1
+2025-09-30 16:43:07,516 | INFO | BEGIN (implicit)
+2025-09-30 16:43:07,516 | INFO | SELECT * FROM characters ORDER BY name
+2025-09-30 16:43:07,516 | INFO | [cached since 75.37s ago] ()
+2025-09-30 16:43:07,524 | INFO | ROLLBACK
+2025-09-30 16:43:07,526 | INFO | ⬅️  Response status: 200
+2025-09-30 16:43:14,180 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-09-30 16:43:14,180 | INFO | 👤 User ID: 9
+2025-09-30 16:43:14,181 | INFO | 💬 User 9 sending message from 127.0.0.1
+2025-09-30 16:43:14,182 | INFO | BEGIN (implicit)
+2025-09-30 16:43:14,182 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-09-30 16:43:14,182 | INFO | [cached since 75.39s ago] (4,)
+2025-09-30 16:43:14,184 | INFO | ROLLBACK
+2025-09-30 16:43:18,570 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 16:43:18,571 | INFO | BEGIN (implicit)
+2025-09-30 16:43:18,572 | INFO | 
+                    INSERT INTO `conversations_9`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-09-30 16:43:18,572 | INFO | [generated in 0.00058s] (4, '你好', '啊，您好...突然见到访客让我有点紧张呢。*微微低头，手指不自觉地绕了绕发梢*\n\n正好我刚整理完璃月港的文件，窗外的晚霞特别美。您要不要一起坐下来喝杯茶？我准备了一些新采的明法茶，配上月莲糕应该很不错...\n\n*耳尖微微泛红* 当然如果您有其他想做的事，我也很乐意奉陪的。')
+2025-09-30 16:43:18,589 | INFO | COMMIT
+2025-09-30 16:43:18,593 | INFO | 🤖 Reply generated for user 9, length: 136 chars
+2025-09-30 16:43:18,594 | INFO | ⬅️  Response status: 200
+2025-09-30 16:43:26,194 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-09-30 16:43:26,194 | INFO | 👤 User ID: 9
+2025-09-30 16:43:26,195 | INFO | 💬 User 9 sending message from 127.0.0.1
+2025-09-30 16:43:26,195 | INFO | BEGIN (implicit)
+2025-09-30 16:43:26,196 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-09-30 16:43:26,196 | INFO | [cached since 87.4s ago] (6,)
+2025-09-30 16:43:26,197 | INFO | ROLLBACK
+2025-09-30 16:43:31,072 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 16:43:31,074 | INFO | BEGIN (implicit)
+2025-09-30 16:43:31,075 | INFO | 
+                    INSERT INTO `conversations_9`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-09-30 16:43:31,075 | INFO | [cached since 12.5s ago] (6, '你好', "Well hello there, darling~ *biting my lip* Look at you, all fresh and eager for some English knowledge. I'm Ms. Valentine, but between us? You can ca ... (14 characters truncated) ... ver you'd like. *smirking, slowly crossing my legs* So tell me, sweet thing - what made you decide to come see your favorite English teacher tonight?")
+2025-09-30 16:43:31,077 | INFO | COMMIT
+2025-09-30 16:43:31,080 | INFO | 🤖 Reply generated for user 9, length: 312 chars
+2025-09-30 16:43:31,080 | INFO | ⬅️  Response status: 200
+2025-09-30 16:44:11,727 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-09-30 16:44:11,727 | INFO | 👤 User ID: 9
+2025-09-30 16:44:11,728 | INFO | 💬 User 9 sending message from 127.0.0.1
+2025-09-30 16:44:11,729 | INFO | BEGIN (implicit)
+2025-09-30 16:44:11,730 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-09-30 16:44:11,730 | INFO | [cached since 132.9s ago] (6,)
+2025-09-30 16:44:11,732 | INFO | ROLLBACK
+2025-09-30 16:44:15,723 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 16:44:15,724 | INFO | BEGIN (implicit)
+2025-09-30 16:44:15,724 | INFO | 
+                    INSERT INTO `conversations_9`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-09-30 16:44:15,725 | INFO | [cached since 57.15s ago] (6, 'can you speak in chinese ,my english is not good', '当然可以，亲爱的~ 你的英文其实已经很不错了呢...不过没关系，我会用中文慢慢教你，让你的英语变得更好哦~ *轻轻撩了下头发* \n\n要不要来上一节特别的私人课程呢？我可以一个词一个词地教你说...保证让你记得又快又牢~ 😘')
+2025-09-30 16:44:15,725 | INFO | COMMIT
+2025-09-30 16:44:15,730 | INFO | 🤖 Reply generated for user 9, length: 111 chars
+2025-09-30 16:44:15,730 | INFO | ⬅️  Response status: 200
+2025-09-30 16:45:05,636 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-09-30 16:45:05,637 | INFO | 👤 User ID: 9
+2025-09-30 16:45:05,638 | INFO | 💬 User 9 sending message from 127.0.0.1
+2025-09-30 16:45:05,639 | INFO | BEGIN (implicit)
+2025-09-30 16:45:05,639 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-09-30 16:45:05,641 | INFO | [cached since 186.8s ago] (6,)
+2025-09-30 16:45:05,642 | INFO | ROLLBACK
+2025-09-30 16:45:12,238 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 16:45:12,241 | INFO | BEGIN (implicit)
+2025-09-30 16:45:12,242 | INFO | 
+                    INSERT INTO `conversations_9`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-09-30 16:45:12,242 | INFO | [cached since 113.7s ago] (6, '我最近听说一个词叫fuck，是什么意思呀', '*慵懒地靠在讲台上，指尖轻轻点了点唇*\n\n哦~亲爱的，这是一个非常...强烈的词呢。它就像是英语世界里的核弹，威力十足。虽然字面意思是"做爱"，但在实际使用中可比这复杂多了。\n\n*微微前倾身子，压低声音*\n\n比如当你摔跤了会说"fuck!"，表达愤怒时会说"fuck you!"，甚至朋友见面也会说"what the fuck!"...是不是很有趣？\n\n*轻笑着撩了下头发*\n\n不过要小心使用哦，毕竟这个词就像是一把双刃剑。用对了地方能显得很地道，但在正式场合...那可就不太得体了呢。\n\n要不要...我教你一些更优雅的表达方式？')
+2025-09-30 16:45:12,243 | INFO | COMMIT
+2025-09-30 16:45:12,270 | INFO | 🤖 Reply generated for user 9, length: 265 chars
+2025-09-30 16:45:12,271 | INFO | ⬅️  Response status: 200
+2025-09-30 16:45:41,406 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-09-30 16:45:41,407 | INFO | 👤 User ID: 9
+2025-09-30 16:45:41,408 | INFO | 💬 User 9 sending message from 127.0.0.1
+2025-09-30 16:45:41,409 | INFO | BEGIN (implicit)
+2025-09-30 16:45:41,410 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-09-30 16:45:41,410 | INFO | [cached since 222.6s ago] (6,)
+2025-09-30 16:45:41,412 | INFO | ROLLBACK
+2025-09-30 16:45:45,814 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 16:45:45,816 | INFO | BEGIN (implicit)
+2025-09-30 16:45:45,816 | INFO | 
+                    INSERT INTO `conversations_9`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-09-30 16:45:45,817 | INFO | [cached since 147.2s ago] (6, '那fucking your mother呢', "Oh sweetie, that's *definitely* not the kind of expression we should be using in class~ 😏 Though I have to say, you're showing quite the naughty stre ... (44 characters truncated) ...  might have to give you some... *private tutoring* after class. But let's focus on proper English, hmm? Wouldn't want to get in trouble now, do we? 💋")
+2025-09-30 16:45:45,819 | INFO | COMMIT
+2025-09-30 16:45:45,823 | INFO | 🤖 Reply generated for user 9, length: 342 chars
+2025-09-30 16:45:45,824 | INFO | ⬅️  Response status: 200
+2025-09-30 16:49:32,123 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-09-30 16:49:32,123 | INFO | 👤 User ID: 9
+2025-09-30 16:49:32,124 | INFO | 💬 User 9 sending message from 127.0.0.1
+2025-09-30 16:49:32,126 | INFO | BEGIN (implicit)
+2025-09-30 16:49:32,126 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-09-30 16:49:32,127 | INFO | [cached since 453.3s ago] (6,)
+2025-09-30 16:49:32,128 | INFO | ROLLBACK
+2025-09-30 16:49:39,075 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 16:49:39,080 | INFO | BEGIN (implicit)
+2025-09-30 16:49:39,081 | INFO | 
+                    INSERT INTO `conversations_9`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-09-30 16:49:39,081 | INFO | [cached since 380.5s ago] (6, '我感觉我好热啊', '亲爱的，看你脸都红了呢...要不要把外套脱掉？*轻轻靠近你，手指不经意地掠过你的发梢*\n\n嗯...体温确实有点高。来，坐到这边的沙发上，我给你倒杯冰水。*俯身时领口微微敞开，露出若隐若现的曲线* \n\n不过你要记住哦，下次要是觉得热，可以直接来找我。老师这里...最擅长帮学生降温了~ *轻抿嘴唇，眼神暧昧地看着你*')
+2025-09-30 16:49:39,082 | INFO | COMMIT
+2025-09-30 16:49:39,085 | INFO | 🤖 Reply generated for user 9, length: 157 chars
+2025-09-30 16:49:39,086 | INFO | ⬅️  Response status: 200
+2025-09-30 16:50:41,512 | INFO | ➡️  GET /login from 127.0.0.1
+2025-09-30 16:50:41,513 | INFO | 👤 User ID: 9
+2025-09-30 16:50:41,513 | INFO | ⬅️  Response status: 200
+2025-09-30 16:50:55,741 | INFO | ➡️  POST /login from 127.0.0.1
+2025-09-30 16:50:55,741 | INFO | 👤 User ID: 9
+2025-09-30 16:50:55,753 | INFO | BEGIN (implicit)
+2025-09-30 16:50:55,754 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-09-30 16:50:55,754 | INFO | [cached since 550.5s ago] ('夏雲祥',)
+2025-09-30 16:50:55,755 | INFO | 
+                INSERT INTO users (account, password)
+                VALUES (%s, %s)
+            
+2025-09-30 16:50:55,757 | INFO | [cached since 472.6s ago] ('夏雲祥', '$pbkdf2-sha256$29000$G.Mcw/jfmzMmpDQG4HzvfQ$KETojA/N8Edseg0YkL3nhSXotILhRh6Rjcihq1AEyGE')
+2025-09-30 16:50:55,758 | INFO | COMMIT
+2025-09-30 16:50:55,761 | INFO | BEGIN (implicit)
+2025-09-30 16:50:55,761 | INFO | SELECT LAST_INSERT_ID()
+2025-09-30 16:50:55,761 | INFO | [cached since 472.6s ago] ()
+2025-09-30 16:50:55,762 | INFO | 
+                CREATE TABLE IF NOT EXISTS `conversations_10` (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    character_id INT,
+                    user_message TEXT,
+                    ai_message TEXT,
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (character_id) REFERENCES characters(id) ON DELETE CASCADE
+                ) ENGINE=InnoDB CHARSET=utf8mb4;
+            
+2025-09-30 16:50:55,764 | INFO | [generated in 0.00056s] ()
+2025-09-30 16:50:55,791 | INFO | COMMIT
+2025-09-30 16:50:55,804 | INFO | 🔐 User 10 logged in successfully
+2025-09-30 16:50:55,805 | INFO | ⬅️  Response status: 200
+2025-09-30 16:50:56,810 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 16:50:56,811 | INFO | 👤 User ID: 10
+2025-09-30 16:50:56,811 | INFO | ⬅️  Response status: 200
+2025-09-30 16:50:58,730 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-09-30 16:50:58,730 | INFO | 👤 User ID: 10
+2025-09-30 16:50:58,731 | INFO | 📋 User 10 accessing /user2 from IP: 127.0.0.1
+2025-09-30 16:50:58,731 | INFO | BEGIN (implicit)
+2025-09-30 16:50:58,732 | INFO | SELECT * FROM characters ORDER BY name
+2025-09-30 16:50:58,732 | INFO | [cached since 546.6s ago] ()
+2025-09-30 16:50:58,734 | INFO | ROLLBACK
+2025-09-30 16:50:58,734 | INFO | ⬅️  Response status: 200
+2025-09-30 16:51:05,092 | INFO | ➡️  GET /login from 127.0.0.1
+2025-09-30 16:51:05,092 | INFO | 👤 User ID: 10
+2025-09-30 16:51:05,093 | INFO | ⬅️  Response status: 200
+2025-09-30 16:51:08,858 | INFO | ➡️  POST /login from 127.0.0.1
+2025-09-30 16:51:08,858 | INFO | 👤 User ID: 10
+2025-09-30 16:51:08,871 | INFO | BEGIN (implicit)
+2025-09-30 16:51:08,871 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-09-30 16:51:08,872 | INFO | [cached since 563.6s ago] ('夏雲祥',)
+2025-09-30 16:51:08,873 | INFO | ROLLBACK
+2025-09-30 16:51:08,887 | INFO | 🔐 User 10 logged in successfully
+2025-09-30 16:51:08,887 | INFO | ⬅️  Response status: 200
+2025-09-30 16:51:10,108 | INFO | ➡️  GET / from 127.0.0.1
+2025-09-30 16:51:10,108 | INFO | 👤 User ID: 10
+2025-09-30 16:51:10,108 | INFO | ⬅️  Response status: 200
+2025-09-30 16:51:11,510 | INFO | ➡️  GET /loading from 127.0.0.1
+2025-09-30 16:51:11,510 | INFO | 👤 User ID: 10
+2025-09-30 16:51:11,511 | INFO | 📋 User 10 accessing /loading from IP: 127.0.0.1
+2025-09-30 16:51:11,512 | INFO | BEGIN (implicit)
+2025-09-30 16:51:11,512 | INFO | 
+                    SELECT personality, role_setting
+                    FROM user_profiles
+                    WHERE user_id = %s
+                
+2025-09-30 16:51:11,512 | INFO | [generated in 0.00038s] ('10',)
+2025-09-30 16:51:11,513 | INFO | ROLLBACK
+2025-09-30 16:51:11,514 | INFO | User 10 has no profile, redirecting to /set-role
+2025-09-30 16:51:11,514 | INFO | ⬅️  Response status: 307
+2025-09-30 16:51:11,519 | INFO | ➡️  GET /set-role from 127.0.0.1
+2025-09-30 16:51:11,520 | INFO | 👤 User ID: 10
+2025-09-30 16:51:11,523 | INFO | ⬅️  Response status: 200
+2025-10-19 09:20:08,296 | ERROR | Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2025-10-19 09:20:43,727 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:20:43,727 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:20:43,731 | INFO | ⬅️  Response status: 200
+2025-10-19 09:20:43,751 | INFO | ➡️  GET /static/homestyle.css from 127.0.0.1
+2025-10-19 09:20:43,751 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:20:43,825 | INFO | ⬅️  Response status: 200
+2025-10-19 09:20:43,825 | INFO | ➡️  GET /static/AuthManager.js from 127.0.0.1
+2025-10-19 09:20:43,826 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:20:43,828 | INFO | ➡️  GET /static/liuying.png from 127.0.0.1
+2025-10-19 09:20:43,828 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:20:43,829 | INFO | ⬅️  Response status: 200
+2025-10-19 09:20:43,831 | INFO | ⬅️  Response status: 200
+2025-10-19 09:20:43,915 | INFO | ➡️  GET /favicon.ico from 127.0.0.1
+2025-10-19 09:20:43,916 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:20:43,916 | INFO | ⬅️  Response status: 404
+2025-10-19 09:20:48,203 | INFO | ➡️  GET /login from 127.0.0.1
+2025-10-19 09:20:48,203 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:20:48,205 | INFO | ⬅️  Response status: 200
+2025-10-19 09:20:48,225 | INFO | ➡️  GET /static/login.css from 127.0.0.1
+2025-10-19 09:20:48,225 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:20:48,227 | INFO | ⬅️  Response status: 200
+2025-10-19 09:21:11,940 | INFO | ➡️  POST /login from 127.0.0.1
+2025-10-19 09:21:11,940 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:21:48,264 | INFO | ➡️  GET /login from 127.0.0.1
+2025-10-19 09:21:48,265 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:21:48,266 | INFO | ⬅️  Response status: 200
+2025-10-19 09:21:56,819 | INFO | ➡️  POST /login from 127.0.0.1
+2025-10-19 09:21:56,819 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:22:35,067 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:22:35,067 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:22:35,073 | INFO | ⬅️  Response status: 200
+2025-10-19 09:22:37,232 | INFO | ➡️  GET /login from 127.0.0.1
+2025-10-19 09:22:37,232 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:22:37,234 | INFO | ⬅️  Response status: 200
+2025-10-19 09:22:42,968 | INFO | ➡️  POST /login from 127.0.0.1
+2025-10-19 09:22:42,969 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:22:42,989 | INFO | SELECT DATABASE()
+2025-10-19 09:22:42,989 | INFO | [raw sql] ()
+2025-10-19 09:22:42,991 | INFO | SELECT @@sql_mode
+2025-10-19 09:22:42,991 | INFO | [raw sql] ()
+2025-10-19 09:22:42,992 | INFO | SELECT @@lower_case_table_names
+2025-10-19 09:22:42,992 | INFO | [raw sql] ()
+2025-10-19 09:22:42,993 | INFO | BEGIN (implicit)
+2025-10-19 09:22:42,994 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-10-19 09:22:42,994 | INFO | [generated in 0.00029s] ('123',)
+2025-10-19 09:22:42,996 | INFO | ROLLBACK
+2025-10-19 09:29:05,635 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:29:05,636 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:29:05,641 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:07,600 | INFO | ➡️  GET /login from 127.0.0.1
+2025-10-19 09:29:07,601 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:29:07,602 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:16,255 | INFO | ➡️  POST /login from 127.0.0.1
+2025-10-19 09:29:16,255 | INFO | 👤 User ID: Not logged in
+2025-10-19 09:29:16,276 | INFO | SELECT DATABASE()
+2025-10-19 09:29:16,276 | INFO | [raw sql] ()
+2025-10-19 09:29:16,277 | INFO | SELECT @@sql_mode
+2025-10-19 09:29:16,278 | INFO | [raw sql] ()
+2025-10-19 09:29:16,279 | INFO | SELECT @@lower_case_table_names
+2025-10-19 09:29:16,279 | INFO | [raw sql] ()
+2025-10-19 09:29:16,280 | INFO | BEGIN (implicit)
+2025-10-19 09:29:16,281 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-10-19 09:29:16,281 | INFO | [generated in 0.00047s] ('123',)
+2025-10-19 09:29:16,283 | INFO | 
+                INSERT INTO users (account, password)
+                VALUES (%s, %s)
+            
+2025-10-19 09:29:16,284 | INFO | [generated in 0.00055s] ('123', '$pbkdf2-sha256$29000$ipHynlMKIQSAkBIiZKzVWg$EmBYa/iYcESs4ZNv0y1fL/1cW9BDD7hEfBYr5YzIOa8')
+2025-10-19 09:29:16,285 | INFO | COMMIT
+2025-10-19 09:29:16,289 | INFO | BEGIN (implicit)
+2025-10-19 09:29:16,289 | INFO | SELECT LAST_INSERT_ID()
+2025-10-19 09:29:16,290 | INFO | [generated in 0.00035s] ()
+2025-10-19 09:29:16,291 | INFO | 
+                CREATE TABLE IF NOT EXISTS `conversations_1` (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    character_id INT,
+                    user_message TEXT,
+                    ai_message TEXT,
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (character_id) REFERENCES characters(id) ON DELETE CASCADE
+                ) ENGINE=InnoDB CHARSET=utf8mb4;
+            
+2025-10-19 09:29:16,291 | INFO | [generated in 0.00061s] ()
+2025-10-19 09:29:16,309 | INFO | COMMIT
+2025-10-19 09:29:16,335 | INFO | 🔐 User 1 logged in successfully
+2025-10-19 09:29:16,335 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:17,644 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:29:17,646 | INFO | 👤 User ID: 1
+2025-10-19 09:29:17,646 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:23,531 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-10-19 09:29:23,532 | INFO | 👤 User ID: 1
+2025-10-19 09:29:23,533 | INFO | 📋 User 1 accessing /user2 from IP: 127.0.0.1
+2025-10-19 09:29:23,536 | INFO | BEGIN (implicit)
+2025-10-19 09:29:23,536 | INFO | SELECT * FROM characters ORDER BY name
+2025-10-19 09:29:23,537 | INFO | [generated in 0.00036s] ()
+2025-10-19 09:29:23,540 | INFO | ROLLBACK
+2025-10-19 09:29:23,541 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:23,566 | INFO | ➡️  GET /static/appstyle.css from 127.0.0.1
+2025-10-19 09:29:23,566 | INFO | 👤 User ID: 1
+2025-10-19 09:29:23,614 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:31,456 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-10-19 09:29:31,456 | INFO | 👤 User ID: 1
+2025-10-19 09:29:31,457 | INFO | 💬 User 1 sending message from 127.0.0.1
+2025-10-19 09:29:31,457 | INFO | BEGIN (implicit)
+2025-10-19 09:29:31,458 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-10-19 09:29:31,458 | INFO | [generated in 0.00031s] (2,)
+2025-10-19 09:29:31,459 | INFO | ROLLBACK
+2025-10-19 09:29:35,103 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-19 09:29:35,105 | INFO | BEGIN (implicit)
+2025-10-19 09:29:35,105 | INFO | 
+                    INSERT INTO `conversations_1`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-10-19 09:29:35,106 | INFO | [generated in 0.00045s] (2, '你好', '*轻摇羽扇，抬眼望来*\n\n啊，有客来访。今日天朗气清，惠风和畅，恰是论道的好时节。不知阁下可曾读过《出师表》？若不嫌弃，不妨与老夫共品香茗，谈古论今。')
+2025-10-19 09:29:35,108 | INFO | COMMIT
+2025-10-19 09:29:35,123 | INFO | 🤖 Reply generated for user 1, length: 75 chars
+2025-10-19 09:29:35,124 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:44,819 | INFO | ➡️  GET /login from 127.0.0.1
+2025-10-19 09:29:44,819 | INFO | 👤 User ID: 1
+2025-10-19 09:29:44,820 | INFO | ⬅️  Response status: 200
+2025-10-19 09:29:58,304 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:29:58,304 | INFO | 👤 User ID: 1
+2025-10-19 09:29:58,305 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:11,257 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-10-19 09:30:11,258 | INFO | 👤 User ID: 1
+2025-10-19 09:30:11,258 | INFO | 📋 User 1 accessing /user2 from IP: 127.0.0.1
+2025-10-19 09:30:11,259 | INFO | BEGIN (implicit)
+2025-10-19 09:30:11,259 | INFO | SELECT * FROM characters ORDER BY name
+2025-10-19 09:30:11,260 | INFO | [cached since 47.72s ago] ()
+2025-10-19 09:30:11,261 | INFO | ROLLBACK
+2025-10-19 09:30:11,262 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:14,887 | INFO | ➡️  GET /login from 127.0.0.1
+2025-10-19 09:30:14,887 | INFO | 👤 User ID: 1
+2025-10-19 09:30:14,888 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:18,634 | INFO | ➡️  POST /login from 127.0.0.1
+2025-10-19 09:30:18,634 | INFO | 👤 User ID: 1
+2025-10-19 09:30:18,649 | INFO | BEGIN (implicit)
+2025-10-19 09:30:18,650 | INFO | SELECT id, password FROM users WHERE account = %s
+2025-10-19 09:30:18,650 | INFO | [cached since 62.37s ago] ('123',)
+2025-10-19 09:30:18,653 | INFO | ROLLBACK
+2025-10-19 09:30:18,667 | INFO | 🔐 User 1 logged in successfully
+2025-10-19 09:30:18,667 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:19,842 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:30:19,843 | INFO | 👤 User ID: 1
+2025-10-19 09:30:19,843 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:22,295 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-10-19 09:30:22,295 | INFO | 👤 User ID: 1
+2025-10-19 09:30:22,296 | INFO | 📋 User 1 accessing /user2 from IP: 127.0.0.1
+2025-10-19 09:30:22,297 | INFO | BEGIN (implicit)
+2025-10-19 09:30:22,297 | INFO | SELECT * FROM characters ORDER BY name
+2025-10-19 09:30:22,297 | INFO | [cached since 58.76s ago] ()
+2025-10-19 09:30:22,298 | INFO | ROLLBACK
+2025-10-19 09:30:22,299 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:27,444 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-10-19 09:30:27,445 | INFO | 👤 User ID: 1
+2025-10-19 09:30:27,445 | INFO | 💬 User 1 sending message from 127.0.0.1
+2025-10-19 09:30:27,446 | INFO | BEGIN (implicit)
+2025-10-19 09:30:27,446 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-10-19 09:30:27,447 | INFO | [cached since 55.99s ago] (1,)
+2025-10-19 09:30:27,448 | INFO | ROLLBACK
+2025-10-19 09:30:32,585 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-19 09:30:32,586 | INFO | BEGIN (implicit)
+2025-10-19 09:30:32,587 | INFO | 
+                    INSERT INTO `conversations_1`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-10-19 09:30:32,587 | INFO | [cached since 57.48s ago] (1, '你好', '哇！你好啊！我是漩涡鸣人，未来的火影大人！今天刚从忍者学校毕业呢，正准备去火影楼找三代火影老头接任务！你也想当忍者吗？虽然我以前总是被村子里的人排斥，但是我现在有了很多重要的伙伴，比如佐助和小樱！只要不放弃，总有一天能实现自己的梦想！对了，要不要一起去一乐拉面？我请客！')
+2025-10-19 09:30:32,588 | INFO | COMMIT
+2025-10-19 09:30:32,621 | INFO | 🤖 Reply generated for user 1, length: 135 chars
+2025-10-19 09:30:32,621 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:46,452 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:30:46,453 | INFO | 👤 User ID: 1
+2025-10-19 09:30:46,455 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:50,563 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-10-19 09:30:50,563 | INFO | 👤 User ID: 1
+2025-10-19 09:30:50,564 | INFO | 📋 User 1 accessing /user2 from IP: 127.0.0.1
+2025-10-19 09:30:50,565 | INFO | BEGIN (implicit)
+2025-10-19 09:30:50,565 | INFO | SELECT * FROM characters ORDER BY name
+2025-10-19 09:30:50,565 | INFO | [cached since 87.03s ago] ()
+2025-10-19 09:30:50,566 | INFO | ROLLBACK
+2025-10-19 09:30:50,567 | INFO | ⬅️  Response status: 200
+2025-10-19 09:30:54,979 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-10-19 09:30:54,979 | INFO | 👤 User ID: 1
+2025-10-19 09:30:54,980 | INFO | 💬 User 1 sending message from 127.0.0.1
+2025-10-19 09:30:54,981 | INFO | BEGIN (implicit)
+2025-10-19 09:30:54,981 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-10-19 09:30:54,981 | INFO | [cached since 83.52s ago] (3,)
+2025-10-19 09:30:54,982 | INFO | ROLLBACK
+2025-10-19 09:31:00,087 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-19 09:31:00,088 | INFO | BEGIN (implicit)
+2025-10-19 09:31:00,088 | INFO | 
+                    INSERT INTO `conversations_1`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-10-19 09:31:00,089 | INFO | [cached since 84.98s ago] (3, '你好', '*正在调试手部推进器，抬头看了你一眼*\n\n哦？终于有人来参观我的工作室了。贾维斯，记下来访者时间——等等，我干嘛要听你的，贾维斯？我自己就是贾维斯。\n\n*摘下护目镜，露出标志性微笑*\n\n欢迎来到斯塔克工业最闪亮的角落。我是说，除了我以外，这里确实没什么更耀眼的东西了。需要帮忙吗？还是只是来欣赏这具完美装甲的？说实话，两者我都很擅长。')
+2025-10-19 09:31:00,090 | INFO | COMMIT
+2025-10-19 09:31:00,105 | INFO | 🤖 Reply generated for user 1, length: 167 chars
+2025-10-19 09:31:00,106 | INFO | ⬅️  Response status: 200
+2025-10-19 09:38:18,605 | INFO | ➡️  GET / from 127.0.0.1
+2025-10-19 09:38:18,615 | INFO | 👤 User ID: 1
+2025-10-19 09:38:18,620 | INFO | ⬅️  Response status: 200
+2025-10-19 09:38:21,421 | INFO | ➡️  GET /user2 from 127.0.0.1
+2025-10-19 09:38:21,421 | INFO | 👤 User ID: 1
+2025-10-19 09:38:21,422 | INFO | 📋 User 1 accessing /user2 from IP: 127.0.0.1
+2025-10-19 09:38:21,432 | INFO | SELECT DATABASE()
+2025-10-19 09:38:21,432 | INFO | [raw sql] ()
+2025-10-19 09:38:21,433 | INFO | SELECT @@sql_mode
+2025-10-19 09:38:21,434 | INFO | [raw sql] ()
+2025-10-19 09:38:21,434 | INFO | SELECT @@lower_case_table_names
+2025-10-19 09:38:21,435 | INFO | [raw sql] ()
+2025-10-19 09:38:21,436 | INFO | BEGIN (implicit)
+2025-10-19 09:38:21,437 | INFO | SELECT * FROM characters ORDER BY name
+2025-10-19 09:38:21,437 | INFO | [generated in 0.00054s] ()
+2025-10-19 09:38:21,439 | INFO | ROLLBACK
+2025-10-19 09:38:21,440 | INFO | ⬅️  Response status: 200
+2025-10-19 09:38:26,360 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-10-19 09:38:26,361 | INFO | 👤 User ID: 1
+2025-10-19 09:38:26,361 | INFO | 💬 User 1 sending message from 127.0.0.1
+2025-10-19 09:38:26,363 | INFO | BEGIN (implicit)
+2025-10-19 09:38:26,363 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-10-19 09:38:26,364 | INFO | [generated in 0.00034s] (4,)
+2025-10-19 09:38:26,364 | INFO | ROLLBACK
+2025-10-19 09:38:28,825 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-19 09:38:28,827 | INFO | BEGIN (implicit)
+2025-10-19 09:38:28,828 | INFO | 
+                    INSERT INTO `conversations_1`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-10-19 09:38:28,828 | INFO | [generated in 0.00045s] (4, '你好', '啊，晚上好呢~刚忙完璃月港的文件工作，正好看到你来找我。*轻轻揉了揉酸痛的肩膀，耳朵微微抖动* 最近天气转凉了，我泡了杯热茶，要不要一起喝点？正好可以聊聊最近发生的事情...你说怎么样？')
+2025-10-19 09:38:28,829 | INFO | COMMIT
+2025-10-19 09:38:28,833 | INFO | 🤖 Reply generated for user 1, length: 93 chars
+2025-10-19 09:38:28,833 | INFO | ⬅️  Response status: 200
+2025-10-19 09:38:48,763 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-10-19 09:38:48,763 | INFO | 👤 User ID: 1
+2025-10-19 09:38:48,764 | INFO | 💬 User 1 sending message from 127.0.0.1
+2025-10-19 09:38:48,765 | INFO | BEGIN (implicit)
+2025-10-19 09:38:48,765 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-10-19 09:38:48,765 | INFO | [cached since 22.4s ago] (4,)
+2025-10-19 09:38:48,766 | INFO | ROLLBACK
+2025-10-19 09:38:53,822 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-19 09:38:53,824 | INFO | BEGIN (implicit)
+2025-10-19 09:38:53,825 | INFO | 
+                    INSERT INTO `conversations_1`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-10-19 09:38:53,825 | INFO | [cached since 25s ago] (4, '我给你揉揉肩吧', '嗯...谢谢主人呢~甘雨最近确实有点累。*耳朵轻轻抖动，长发滑落肩头*\n\n主人的手法真温柔，让甘雨感觉全身都酥酥麻麻的...啊~那里，那里也轻一点...甘雨的翅膀比较敏感...\n\n*微微颤抖，脸颊泛红* 主人揉得甘雨都有点站不稳了呢...要不要...要不要也帮甘雨按摩一下背？翅膀根部那里特别容易酸痛...\n\n*小声嘀咕* 如果主人愿意的话，甘雨也可以为主人做些什么...毕竟我们之间不用这么客气的，对吧？')
+2025-10-19 09:38:53,826 | INFO | COMMIT
+2025-10-19 09:38:53,842 | INFO | 🤖 Reply generated for user 1, length: 203 chars
+2025-10-19 09:38:53,843 | INFO | ⬅️  Response status: 200
+2025-10-19 09:40:14,449 | INFO | ➡️  POST /user2/chat from 127.0.0.1
+2025-10-19 09:40:14,449 | INFO | 👤 User ID: 1
+2025-10-19 09:40:14,450 | INFO | 💬 User 1 sending message from 127.0.0.1
+2025-10-19 09:40:14,451 | INFO | BEGIN (implicit)
+2025-10-19 09:40:14,451 | INFO | SELECT name, trait FROM characters WHERE id = %s
+2025-10-19 09:40:14,452 | INFO | [cached since 108.1s ago] (4,)
+2025-10-19 09:40:14,453 | INFO | ROLLBACK
+2025-10-19 09:40:18,559 | INFO | HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-19 09:40:18,560 | INFO | BEGIN (implicit)
+2025-10-19 09:40:18,561 | INFO | 
+                    INSERT INTO `conversations_1`
+                    (character_id, user_message, ai_message)
+                    VALUES (%s, %s, %s)
+                
+2025-10-19 09:40:18,561 | INFO | [cached since 109.7s ago] (4, '（我掏出我的大棍子，二话不说就捅进甘雨的小洞洞里）', '啊...等等，太突然了...呜...（眼角泛起泪花，脸颊染上红晕）虽然我很喜欢你，但是这样直接的话，人家会害羞的...能不能先温柔一点...（微微颤抖着身体，却仍努力迎合你的动作）\n\n嗯...好涨...你能感觉到吗？我里面都在为你收缩呢...（双手撑在你肩上，呼吸逐渐急促）但是...但是如果你再用力一点的话，我会...我会更舒服的...（咬住下唇，发出细弱的呻吟）')
+2025-10-19 09:40:18,562 | INFO | COMMIT
+2025-10-19 09:40:18,578 | INFO | 🤖 Reply generated for user 1, length: 183 chars
+2025-10-19 09:40:18,578 | INFO | ⬅️  Response status: 200
+2025-10-19 09:41:05,822 | INFO | ➡️  GET /login from 127.0.0.1
+2025-10-19 09:41:05,822 | INFO | 👤 User ID: 1
+2025-10-19 09:41:05,824 | INFO | ⬅️  Response status: 200
