@@ -1,39 +1,30 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="static/login.css">
+  <link rel="stylesheet" href="/static/login.css">
   <title>用户登录</title>
 
-  <!-- React & Babel -->
+  <!-- 引入 React 和 Babel -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- 🔁 引入全局认证模块 -->
+  <script src="/static/AuthManager.js" defer></script>
 </head>
 <body>
   <div id="root"></div>
 
   <script type="text/babel">
-    // 设置 Cookie 的工具函数
-    function setCookie(name, value, days) {
-      let expires = '';
-      if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        expires = `; expires=${date.toUTCString()}`;
-      }
-      document.cookie = `${name}=${encodeURIComponent(value)}${expires}; path=/; SameSite=Lax;`;
-    }
-
     function Login() {
       const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const account = formData.get("account");
         const password = formData.get("password");
-        const rememberMe = formData.get("remember"); // 是否勾选“记住我”
+        const rememberMe = !!formData.get("remember");
 
         try {
           const res = await fetch("/login", {
@@ -45,16 +36,9 @@
           const result = await res.json();
 
           if (result.success) {
-            // 1. 将 token 存入 Cookie
-            if (result.token) {
-              // 若 rememberMe 被勾选，则设置 cookie 保留 7 天，否则为会话 cookie
-              const days = rememberMe ? 7 : 0;
-              setCookie('authToken', result.token, days);
-            }
-
-            // 2. localStorage 存储登录状态和账号
+            // 使用全局 AuthManager 存储 token
+            AuthManager.setToken(result.token, rememberMe);
             localStorage.setItem("account", account);
-            localStorage.setItem("isAuthenticated", true);
 
             alert("登录成功！");
             window.location.href = "/";
@@ -80,7 +64,7 @@
               <input type="password" id="password" name="password" placeholder="请输入密码" required />
             </div>
             <div className="remember-me">
-              <input type="checkbox" id="remember" name="remember" />
+              <input type="checkbox" id="remember" name="remember" value="true" />
               <label htmlFor="remember">记住我</label>
             </div>
             <button type="submit" className="btn-login">登录</button>
@@ -92,7 +76,6 @@
       );
     }
 
-    // 渲染组件
     ReactDOM.createRoot(document.getElementById('root')).render(<Login />);
   </script>
 </body>

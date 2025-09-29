@@ -46,7 +46,7 @@ def check_users(account,password):
     cursor.execute("SELECT LAST_INSERT_ID();" )
     id = cursor.fetchone()[0]
     cursor.execute(
-        """ CREATE TABLE conversations_{} (
+        """ CREATE TABLE conversitions_{} (
             id INT AUTO_INCREMENT PRIMARY KEY,
             character_id INT,
             user_message TEXT,
@@ -88,3 +88,4 @@ def get_character_by_id(character_id:int):
     cursor.execute("SELECT name, trait FROM characters WHERE id = %s", (character_id,))
     character = cursor.fetchone()
     conn.close()
+    return character

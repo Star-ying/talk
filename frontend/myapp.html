@@ -1,32 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🎭 AI 角色扮演聊天室</title>
   <link rel="stylesheet" href="/static/appstyle.css" />
+
+  <!-- 🔁 引入全局认证模块 -->
+  <script src="/static/AuthManager.js" defer></script>
 </head>
+
 <body>
-
-  <!-- 检查是否已登录 -->
-  <script>
-    // ✅ 页面加载时检查认证状态
-    function checkAuth() {
-      const user_info = localStorage.getItem("isAuthenticated");
-      if (!user_info) {
-        alert("请先登录！");
-        window.location.href = "/login"; // 跳转到登录页
-        return false;
-      }
-      return true; // 已登录
-    }
-
-    // 立即执行检查
-    if (!checkAuth()) {
-      document.body.innerHTML = "<h2>正在跳转至登录...</h2>";
-    }
-  </script>
-
   <div class="container">
     <h1>🎭 AI 角色扮演聊天室</h1>
 
@@ -44,25 +29,26 @@
     <!-- 输入框 -->
     <div class="input-area">
       <input type="text" id="userInput" placeholder="对角色说点什么..." autofocus
-             onkeypress="if(event.key==='Enter') sendMessage()"/>
+        onkeypress="if(event.key==='Enter') sendMessage()" />
       <button onclick="sendMessage()">发送</button>
+    </div>
+
+    <!-- 登出按钮 -->
+    <div style="margin-top: 20px;">
+      <button onclick="AuthManager.logout()" style="background-color: #d9534f;">登出</button>
     </div>
   </div>
 
   <script>
     let currentCharacterId = null;
-    const charactersData = { characters_json };
 
     function loadCharacter() {
       const select = document.getElementById("characterSelect");
       const id = parseInt(select.value);
       if (!id) return;
-
       currentCharacterId = id;
-      const character = charactersData.find(c => c.id === id);
-
-      const chatBox = document.getElementById("chatBox");
-      chatBox.innerHTML = `<div class="system">你现在正在与 <strong>${character.name}</strong> 聊天。<br><em>${character.trait}</em></div>`;
+      chatBox.innerHTML = "";
+      appendMessage("system", `你选择了角色：${select.options[select.selectedIndex].text}`);
     }
 
     async function sendMessage() {
@@ -70,35 +56,28 @@
       const message = input.value.trim();
       if (!message || !currentCharacterId) return;
 
-      // 显示用户消息
       appendMessage("user", message);
       input.value = "";
 
       try {
-        const isuser = localStorage.getItem("isAuthenticated")
-
-        const response = await fetch("/user2/chat", {
+        const response = await AuthManager.request("/user2/chat", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`  // ✅ 关键：携带 JWT Token
-          },
-          body: JSON.stringify({ 
-            character_id: currentCharacterId, 
-            message: message 
+          body: JSON.stringify({
+            character_id: currentCharacterId,
+            message: message
           })
         });
 
         const data = await response.json();
-
-        if (response.ok && data.reply) {
+        if (data.reply) {
           appendMessage("ai", data.reply);
         } else {
-          appendMessage("ai", "❌ 错误：" + (data.message || data.error || "未知错误"));
+          appendMessage("ai", "❌ 错误：" + (data.message || data.error || "未知"));
         }
       } catch (error) {
-        console.error("请求失败:", error);
-        appendMessage("ai", "⚠️ 网络错误，请稍后再试。");
+        if (!error.message?.includes("未登录")) {
+          appendMessage("ai", "⚠️ 网络错误，请稍后再试。");
+        }
       }
     }
 
@@ -108,9 +87,9 @@
       msgDiv.className = `message ${role}`;
       msgDiv.innerText = text;
       chatBox.appendChild(msgDiv);
-      chatBox.scrollTop = chatBox.scrollHeight; // 自动滚动到底部
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
-
 </body>
+
 </html>
