@@ -1,0 +1,16 @@
+# Web framework
+fastapi>=0.111.0
+uvicorn[standard]>=0.23.0
+jinja2>=3.1.0
+python-dotenv>=1.0.0
+
+# Database client
+mysql-connector-python>=8.0.0
+
+# Local LLM inference
+transformers>=4.41.0
+
+torch>=2.2.0
+
+safetensors>=0.4.0
+accelerate>=0.30.0
