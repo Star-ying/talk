@@ -2,8 +2,8 @@
 import os
 
 # OpenAI API 配置
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "your-openai-api-key-here")
-OPENAI_MODEL = "gpt-4"
+DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY", "sk-6175f4c9a399401d914d11b1e1db1873")
+DASHSCOPE_MODEL = "qwen-plus"
 
 # 语音识别配置
 VOICE_RECOGNITION_LANGUAGE = "zh-CN"
@@ -15,8 +15,8 @@ TTS_RATE = 200  # 语音速度
 TTS_VOLUME = 0.9  # 语音音量
 
 # 系统配置
-DEFAULT_MUSIC_PATH = "~/Music"  # 默认音乐路径
-DEFAULT_DOCUMENT_PATH = "~/Documents"  # 默认文档路径
+DEFAULT_MUSIC_PATH = "F:\\程序员的日常\\python\\new_source\\Music"  # 默认音乐路径
+DEFAULT_DOCUMENT_PATH = "F:\\程序员的日常\\python\\new_source\\Documents"  # 默认文档路径
 
 # 应用配置
 APP_NAME = "语音控制AI助手"
