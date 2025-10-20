@@ -9,7 +9,7 @@ import dashscope
 from dashscope import Generation
 
 
-class GPTAssistant:
+class QWENAssistant:
     def __init__(self):
         # 设置 DashScope API Key（✅ 替代 OpenAI 的 api_key）
         dashscope.api_key = DASHSCOPE_API_KEY
@@ -201,7 +201,7 @@ class GPTAssistant:
 # 🧪 测试代码
 # =============================
 if __name__ == "__main__":
-    assistant = GPTAssistant()
+    assistant = QWENAssistant()
 
     test_commands = [
         "播放周杰伦的歌曲",

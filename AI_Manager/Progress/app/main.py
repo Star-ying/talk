@@ -1,6 +1,6 @@
 import time
 from voice_recognizer import VoiceRecognizer
-from gpt_assistant import GPTAssistant
+from qwen_assistant import QWENAssistant
 from system_controller import SystemController, TaskOrchestrator
 from text_to_speech import VoiceFeedback
 
@@ -46,7 +46,7 @@ def handle_response(resp, controller: SystemController, orchestrator: TaskOrches
 
 def main():
     recognizer = VoiceRecognizer()
-    assistant = GPTAssistant()
+    assistant = QWENAssistant()
     controller = SystemController()
     orchestrator = TaskOrchestrator(controller, assistant)
     speaker = VoiceFeedback()
