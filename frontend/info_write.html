@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>学生信息填写</title>
+  <link rel="stylesheet" href="/static/infostyle.css" />
+</head>
+
+<body>
+
+<div class="form-container">
+  <div class="form-header">
+    <h2>学生信息登记表</h2>
+    <p>请准确填写以下信息，用于系统身份认证与服务推送</p>
+  </div>
+
+  <form id="studentForm">
+    <div class="form-grid">
+
+      <!-- 基础信息 -->
+      <div class="form-group">
+        <label for="studentId">学号 *</label>
+        <input type="text" id="studentId" name="studentId" placeholder="请输入学号" required />
+      </div>
+
+      <div class="form-group">
+        <label for="name">姓名 *</label>
+        <input type="text" id="name" name="name" placeholder="请输入姓名" required />
+      </div>
+
+      <div class="form-group">
+        <label for="college">学院 *</label>
+        <input type="text" id="college" name="college" list="collegeList" placeholder="请选择或输入学院" required />
+        <datalist id="collegeList">
+          <option value="计算机科学与技术学院">
+          <option value="电子信息工程学院">
+          <option value="数学与统计学院">
+          <option value="外国语学院">
+          <option value="经济管理学院">
+          <option value="艺术设计学院">
+        </datalist>
+      </div>
+
+      <div class="form-group">
+        <label for="major">专业 *</label>
+        <input type="text" id="major" name="major" placeholder="请输入专业" required />
+      </div>
+
+      <div class="form-group">
+        <label for="grade">年级 *</label>
+        <select id="grade" name="grade" required>
+          <option value="">请选择年级</option>
+          <option value="2021">大四</option>
+          <option value="2022">大三</option>
+          <option value="2023">大二</option>
+          <option value="2024">大一</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="className">班级 *</label>
+        <input type="text" id="className" name="className" placeholder="如：计科2201班" required />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">性别</label>
+        <select id="gender" name="gender">
+          <option value="">请选择性别</option>
+          <option value="男">男</option>
+          <option value="女">女</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">联系电话</label>
+        <input type="tel" id="phone" name="phone" placeholder="请输入手机号码" pattern="[0-9]{11}" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">电子邮箱</label>
+        <input type="email" id="email" name="email" placeholder="请输入邮箱地址" />
+      </div>
+
+      <div class="form-group">
+        <label for="qq">QQ 号码（可选）</label>
+        <input type="text" id="qq" name="qq" placeholder="请输入 QQ 号" />
+      </div>
+
+      <!-- 备注（占两列） -->
+      <div class="form-group full-width">
+        <label for="note">备注</label>
+        <input type="text" id="note" name="note" placeholder="如有特殊说明，请填写" style="height: 60px;" />
+      </div>
+
+    </div>
+
+    <button type="submit" class="submit-btn">提交信息</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("studentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    console.log("提交的数据：", data);
+    alert("信息已成功提交！");
+  });
+</script>
+
+</body>
+</html>

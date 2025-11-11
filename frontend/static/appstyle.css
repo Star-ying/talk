@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 80vh;
+  max-width: 800px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  /* 垂直居中对齐 */
+  background: #007bff;
+  color: white;
+  padding: 20px;
+  gap: 12px;
+  /* 按钮和文字之间的间距 */
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  background: #007bff;
+  color: white;
+  margin: 0;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+}
+
+#chatBox {
+  height: 400px;
+  overflow-y: auto;
+  padding: 15px;
+  background: #f9f9fb;
+}
+
+.message {
+  max-width: 70%;
+  margin: 8px 0;
+  padding: 10px 15px;
+  border-radius: 18px;
+  line-height: 1.5;
+}
+
+.message.user {
+  background: #007bff;
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.message.ai {
+  background: #e9ecef;
+  color: black;
+  align-self: flex-start;
+}
+
+.system {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #218838;
+}
+
+.circle-button {
+  /* 尺寸 */
+  width: 60px;
+  height: 60px;
+  /* 背景与形状 */
+  background-color: #ffffff;
+  border-radius: 50%;
+  /* 🔴 关键：移除默认边框和轮廓 */
+  border: none;
+  /* 去掉所有边框 */
+  outline: none;
+  /* 防止聚焦时出现丑陋的外轮廓 */
+  /* 内容居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 文字样式 */
+  color: #009dff;
+  font-size: 24px;
+  font-weight: bold;
+  /* 鼠标指针 */
+  cursor: pointer;
+  /* 添加柔和阴影，提升立体感 */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  /* 平滑过渡动画 */
+  transition: all 0.3s ease;
+}
+
+/* 悬停效果：轻微缩放 + 背景变蓝 + 白色图标 */
+.circle-button:hover {
+  background-color: #009dff;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 点击效果：模拟按下 */
+.circle-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

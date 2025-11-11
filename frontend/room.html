@@ -1,0 +1,138 @@
+<!-- frontend/templates/room.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 聊天室</title>
+  <link rel="stylesheet" href="/static/chatroom.css" />
+
+  <!-- 引入 React 和 Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- 全局认证模块 -->
+  <script src="/static/AuthManager.js" defer></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const ChatRoom = () => {
+      const [messages, setMessages] = React.useState([]);
+      const [inputValue, setInputValue] = React.useState("");
+      const [ws, setWs] = React.useState(null);
+      const messagesEndRef = React.useRef(null);
+
+      // 滚动到底部
+      const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      };
+
+      React.useEffect(() => {
+        scrollToBottom();
+      }, [messages]);
+
+      React.useEffect(() => {
+        const websocket = new WebSocket(`ws://${window.location.host}/ws`);
+
+        websocket.onopen = () => {
+          console.log("✅ 已连接到聊天室");
+          setWs(websocket);
+        };
+
+        websocket.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          setMessages(prev => [...prev, data]);
+        };
+
+        websocket.onclose = () => {
+          console.log("❌ 聊天室连接已关闭");
+          alert("与服务器断开连接");
+        };
+
+        websocket.onerror = (err) => {
+          console.error("WebSocket 错误:", err);
+        };
+
+        return () => {
+          websocket.close();
+        };
+      }, []);
+
+      const goHome = () => {
+        window.location.href = '/';
+      }
+
+      const sendMessage = () => {
+        if (!inputValue.trim() || !ws || ws.readyState !== WebSocket.OPEN) return;
+
+        const msg = {
+          type: "chat",
+          content: inputValue.trim()
+        };
+
+        ws.send(JSON.stringify(msg));
+        setInputValue("");
+      };
+
+      const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      };
+
+      return (
+        <div className="chat-container">
+
+          <div class="chat-header-bar">
+            <button className="circle-button" onClick={goHome}>
+              &lt;
+            </button>
+            <div class="chat-header">
+              <h2>💬 校园群聊室</h2>
+              <p>当前用户: {{ stu_id }}</p>
+            </div>
+          </div>
+
+          <div className="chat-messages">
+            {messages.length === 0 ? (
+              <p className="no-messages">暂无消息，开始对话吧！</p>
+            ) : (
+              messages.map((msg, idx) => (
+                <div key={idx} className={`message ${msg.stu_id === '{{ stu_id }}' ? 'own' : 'other'}`}>
+                  <strong>{msg.stu_id}</strong>
+                  <p>{msg.content}</p>
+                  <small>{new Date(msg.timestamp * 1000).toLocaleTimeString()}</small>
+                </div>
+              ))
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          <div className="chat-input-area">
+            <textarea
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="输入消息..."
+              rows="2"
+              maxLength="500"
+            />
+            <button onClick={sendMessage} disabled={!inputValue.trim()}>
+              发送
+            </button>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<ChatRoom />);
+  </script>
+</body>
+
+</html>

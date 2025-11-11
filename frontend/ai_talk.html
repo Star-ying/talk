@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎭 AI 角色扮演聊天室</title>
+  <link rel="stylesheet" href="/static/appstyle.css?v=2" />
+
+  <!-- 🔁 引入全局认证模块 -->
+  <script src="/static/AuthManager.js" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header-bar">
+      <button class="circle-button" onclick="window.location.href='/'">
+        &lt;
+      </button>
+      <h1>🎭 AI 角色扮演聊天室</h1>
+    </div>
+
+    <!-- 角色选择 -->
+    <select id="characterSelect" onchange="loadCharacter()">
+      <option value="">请选择角色...</option>
+      {% for char in characters %}
+      <option value="{{ char.id }}">{{ char.name }}</option>
+      {% endfor %}
+    </select>
+
+    <!-- 聊天窗口 -->
+    <div id="chatBox"></div>
+
+    <!-- 输入框 -->
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="对角色说点什么..." autofocus
+        onkeypress="if(event.key==='Enter') sendMessage()" />
+      <button class="sendmassage" onclick="sendMessage()">发送</button>
+    </div>
+
+    <!-- 登出按钮 -->
+    <div style="margin-top: 20px;">
+      <button onclick="AuthManager.logout()" style="background-color: #d9534f;">登出</button>
+    </div>
+  </div>
+
+  <script>
+    let currentCharacterId = null;
+
+    function checkAuth() {
+      if (!window.AuthManager.isAuthenticated()) {
+        alert("请先登录！");
+        window.location.href = "/login";
+        document.body.innerHTML = "正在跳转至登录…";
+        throw new Error("未认证");
+      }
+    }
+
+    function loadCharacter() {
+      checkAuth();
+      const select = document.getElementById("characterSelect");
+      const id = parseInt(select.value);
+      if (!id) return;
+      currentCharacterId = id;
+      chatBox.innerHTML = "";
+      appendMessage("system", `你选择了角色：${select.options[select.selectedIndex].text}`);
+    }
+
+    async function sendMessage() {
+      checkAuth();
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (!message || !currentCharacterId) return;
+
+      appendMessage("user", message);
+      input.value = "";
+
+      try {
+        const response = await AuthManager.request("/ai/chat", {
+          method: "POST",
+          body: JSON.stringify({
+            character_id: currentCharacterId,
+            message: message
+          })
+        });
+
+        const data = await response.json();
+        if (data.reply) {
+          appendMessage("ai", data.reply);
+        } else {
+          appendMessage("ai", "❌ 错误：" + (data.message || data.error || "未知"));
+        }
+      } catch (error) {
+        if (!error.message?.includes("未登录")) {
+          appendMessage("ai", "⚠️ 网络错误，请稍后再试。");
+        }
+      }
+    }
+
+    function appendMessage(role, text) {
+      const chatBox = document.getElementById("chatBox");
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `message ${role}`;
+      msgDiv.innerText = text;
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+
+</html>

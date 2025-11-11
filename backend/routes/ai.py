@@ -1,0 +1,103 @@
+# backend/routes/api.py
+from fastapi import APIRouter, Request, Depends, HTTPException
+import httpx
+import logging
+
+from jwt_handler import get_current_user_id
+from backend.crud import character, conversation
+from setting import ENV_CONFIG
+
+logger = logging.getLogger(__name__)
+
+router = APIRouter(prefix="/ai", tags=["AI_chat"])
+
+@router.post("/chat")
+async def dashscope_chat(
+    request: Request,
+    current_user_id: str = Depends(get_current_user_id)
+):
+    client_ip = request.client.host
+    if not current_user_id:
+        logger.warning(f"🚫 Chat attempt without auth from IP: {client_ip}")
+        raise HTTPException(status_code=401, detail="未授权访问")
+
+    logger.info(f"💬 User {current_user_id} sending message from {client_ip}")
+
+    try:
+        data = await request.json()
+    except Exception as e:
+        logger.warning(f"User {current_user_id}: Invalid JSON in chat request - {e}")
+        raise HTTPException(status_code=400, detail="请求体格式错误")
+
+    character_id = data.get("character_id")
+    user_message = data.get("message")
+
+    if not character_id or not user_message:
+        logger.warning(f"User {current_user_id}: Missing params in chat request - {data}")
+        raise HTTPException(status_code=400, detail="缺少必要参数")
+
+    characters = await character.get_character_by_id(character_id)
+    if not characters:
+        logger.warning(f"User {current_user_id}: Invalid character ID {character_id}")
+        raise HTTPException(status_code=404, detail="角色不存在")
+
+    system_prompt = f"""
+    你正在扮演 {characters['name']}。
+    人物设定：{characters['trait']}
+    请始终以这个角色的身份、语气和思维方式回答问题。
+    不要暴露你是 AI 的事实。
+    """.strip()
+
+    try:
+        API_KEY = ENV_CONFIG.get("DASHSCOPE_API_KEY")
+        if not API_KEY:
+            logger.error("❗ DASHSCOPE_API_KEY is not set")
+            raise HTTPException(status_code=500, detail="API密钥未配置")
+
+        headers = {
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+
+        payload = {
+            "model": "qwen-plus",
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message}
+            ],
+            "temperature": 0.85,
+            "top_p": 0.95,
+            "max_tokens": 512,
+            "stream": False
+        }
+
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            resp = await client.post(
+                "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+                json=payload,
+                headers=headers
+            )
+
+        if resp.status_code != 200:
+            error_detail = resp.text
+            logger.error(f"☁️ Remote API error [{resp.status_code}]: {error_detail}")
+            raise HTTPException(
+                status_code=resp.status_code,
+                detail=f"远程API错误: {error_detail}"
+            )
+
+        result = resp.json()
+        reply = result["choices"][0]["message"]["content"].strip()
+
+        await conversation.save_conversation(int(current_user_id), character_id, user_message, reply)
+
+        logger.info(f"🤖 Reply generated for user {current_user_id}, length: {len(reply)} chars")
+
+        return {"reply": reply}
+
+    except Exception as e:
+        import traceback
+        error_msg = traceback.format_exc()
+        logger.critical(f"💥 Unexpected error in /api/user/chat:\n{error_msg}")
+        raise HTTPException(status_code=500, detail=f"请求失败: {str(e)}")

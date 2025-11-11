@@ -1,41 +1,47 @@
 # backend/database.py
-import mysql.connector
-from mysql.connector import Error
-import os
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy import text
 
-db_config = {
-    'host': 'localhost', #主机地址
-    'database': 'ai_roleplay', #数据库名
-    'user': 'root',  # 用户名
-    'password': '123456'  # 密码
-}
+from backend.models.base import Base
 
-def get_connection():
-    try:
-        connection = mysql.connector.connect(**db_config)
-        return connection
-    except Error as e:
-        print(f"数据库连接失败: {e}")
-        return None
+# ======================
+# 数据库配置
+# ======================
+DATABASE_URL = "mysql+asyncmy://root:123456@localhost/ai_roleplay?charset=utf8mb4"
 
-def get_all_characters():
-    conn = get_connection()
-    if conn is None:
-        return []
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM characters ORDER BY name")
-    result = cursor.fetchall()
-    conn.close()
-    return result
+# 创建异步引擎
+engine = create_async_engine(
+    DATABASE_URL,
+    echo=True,           # 调试用，查看生成的 SQL
+    pool_pre_ping=True,
+    max_overflow=10,
+    pool_size=5
+)
 
-def save_conversation(character_id, user_msg, ai_msg):
-    conn = get_connection()
-    if conn is None:
-        return
-    cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO conversations (character_id, user_message, ai_message) VALUES (%s, %s, %s)",
-        (character_id, user_msg, ai_msg)
-    )
-    conn.commit()
-    conn.close()
+# 创建异步 Session 工厂
+AsyncSessionLocal = async_sessionmaker(
+    bind=engine,
+    class_=AsyncSession,
+    expire_on_commit=False
+)
+
+
+# ======================
+# 初始化数据库表（仅运行一次）
+# ======================
+async def init_db():
+    """初始化静态表（users, characters），不包括动态 conversations_* 表"""
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+        # 确保 characters 表有默认数据（示例）
+        result = await conn.execute(text("SELECT COUNT(*) FROM characters"))
+        count = result.scalar()
+        if count == 0:
+            await conn.execute(
+                text("""
+                    INSERT INTO characters (name, trait) VALUES 
+                    ('Alice', 'cheerful and smart'),
+                    ('Bob', 'calm and logical')
+                """)
+            )

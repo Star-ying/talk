@@ -1,0 +1,202 @@
+/* frontend/static/chatroom.css */
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container {
+  width: 90%;
+  max-width: 800px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+}
+
+.chat-header-bar {
+  display: flex;
+  align-items: center;
+  /* 垂直居中对齐 */
+  background: #007bff;
+  color: white;
+  padding: 20px;
+  gap: 12px;
+  /* 按钮和文字之间的间距 */
+}
+
+.chat-header {
+  margin: 0;
+  flex: 1;
+  /* 占据剩余空间 */
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.chat-header p {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f9f9fb;
+  min-height: 400px;
+}
+
+.no-messages {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  margin: 30px 0;
+}
+
+.message {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  line-height: 1.5;
+  position: relative;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+
+.message.own {
+  align-self: flex-end;
+  background: #007bff;
+  color: white;
+  margin-left: auto;
+}
+
+.message.other {
+  align-self: flex-start;
+  background: #e9ecef;
+  color: #333;
+}
+
+.message strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.message small {
+  display: block;
+  text-align: right;
+  opacity: 0.7;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.chat-input-area {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #ddd;
+  background: white;
+  gap: 8px;
+}
+
+.chat-input-area textarea {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  font-family: inherit;
+  max-height: 100px;
+  min-height: 40px;
+}
+
+.chat-input-area textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.chat-input-area button {
+  padding: 12px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.chat-input-area button:hover:not(:disabled) {
+  background: #218838;
+}
+
+.chat-input-area button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.circle-button {
+  /* 尺寸 */
+  width: 60px;
+  height: 60px;
+  /* 背景与形状 */
+  background-color: #ffffff;
+  border-radius: 50%;
+  /* 🔴 关键：移除默认边框和轮廓 */
+  border: none;
+  /* 去掉所有边框 */
+  outline: none;
+  /* 防止聚焦时出现丑陋的外轮廓 */
+  /* 内容居中 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 文字样式 */
+  color: #009dff;
+  font-size: 24px;
+  font-weight: bold;
+  /* 鼠标指针 */
+  cursor: pointer;
+  /* 添加柔和阴影，提升立体感 */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  /* 平滑过渡动画 */
+  transition: all 0.3s ease;
+}
+
+/* 悬停效果：轻微缩放 + 背景变蓝 + 白色图标 */
+.circle-button:hover {
+  background-color: #009dff;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 点击效果：模拟按下 */
+.circle-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
