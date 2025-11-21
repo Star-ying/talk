@@ -41,9 +41,14 @@
             // 使用全局 AuthManager 存储 token
             AuthManager.setToken(result.token, rememberMe);
             localStorage.setItem("account", account);
-
-            alert("登录成功！");
-            window.location.href = "/user_info/write";
+            if (result.state){
+              alert(`登录成功！欢迎${account}`);
+              window.location.href = "/";
+            }
+            else {
+              alert("请填写信息");
+              window.location.href = "/write_info";
+            }
           } else {
             alert(result.message || "用户名或密码错误");
           }

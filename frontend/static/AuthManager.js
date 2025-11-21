@@ -21,7 +21,7 @@ class AuthManager {
 
     // 安全设置：path=/, SameSite=Lax, Secure（生产环境必须 HTTPS）
     document.cookie = `authToken=${encodeURIComponent(token)}${expires}; path=/; SameSite=Lax; Secure`;
-    
+
     // 标记已登录状态（用于快速判断）
     localStorage.setItem("isAuthenticated", "true");
   }

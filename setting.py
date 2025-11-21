@@ -25,6 +25,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+#日志工厂
 async def log_middleware(request, call_next):
     logger.info(f"➡️ {request.method} {request.url.path}")
     response = await call_next(request)

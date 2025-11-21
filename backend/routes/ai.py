@@ -1,10 +1,11 @@
 # backend/routes/api.py
-from fastapi import APIRouter, Request, Depends, HTTPException
+from fastapi import APIRouter, Body, Request, Depends, HTTPException
 import httpx
 import logging
 
 from jwt_handler import get_current_user_id
 from backend.crud import character, conversation
+from backend.models.conversation import CreateConversationRequest
 from setting import ENV_CONFIG
 
 logger = logging.getLogger(__name__)
@@ -14,23 +15,19 @@ router = APIRouter(prefix="/ai", tags=["AI_chat"])
 @router.post("/chat")
 async def dashscope_chat(
     request: Request,
-    current_user_id: str = Depends(get_current_user_id)
+    data: CreateConversationRequest = Body(...),
+    current_user_id: int = Depends(get_current_user_id)
 ):
     client_ip = request.client.host
+
     if not current_user_id:
         logger.warning(f"🚫 Chat attempt without auth from IP: {client_ip}")
         raise HTTPException(status_code=401, detail="未授权访问")
 
     logger.info(f"💬 User {current_user_id} sending message from {client_ip}")
-
-    try:
-        data = await request.json()
-    except Exception as e:
-        logger.warning(f"User {current_user_id}: Invalid JSON in chat request - {e}")
-        raise HTTPException(status_code=400, detail="请求体格式错误")
-
-    character_id = data.get("character_id")
-    user_message = data.get("message")
+    
+    character_id = data.character_id
+    user_message = data.user_message
 
     if not character_id or not user_message:
         logger.warning(f"User {current_user_id}: Missing params in chat request - {data}")
@@ -90,7 +87,7 @@ async def dashscope_chat(
         result = resp.json()
         reply = result["choices"][0]["message"]["content"].strip()
 
-        await conversation.save_conversation(int(current_user_id), character_id, user_message, reply)
+        await conversation.save_conversation(current_user_id, character_id, user_message, reply)
 
         logger.info(f"🤖 Reply generated for user {current_user_id}, length: {len(reply)} chars")
 

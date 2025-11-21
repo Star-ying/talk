@@ -8,6 +8,7 @@ import logging
 from backend.routes.pages import router as pages_router
 from backend.routes.ai import router as ai_router
 from backend.routes.web_socket import router as chat_router
+from backend.routes.user import router as user_router
 
 # 设置日志
 logging.basicConfig(level=logging.INFO)
@@ -43,6 +44,7 @@ def create_app():
     app.include_router(pages_router)
     app.include_router(ai_router)
     app.include_router(chat_router)
+    app.include_router(user_router)
 
     return app
 

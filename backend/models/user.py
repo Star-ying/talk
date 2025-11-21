@@ -1,52 +1,74 @@
 # backend/models/user.py
 from datetime import date
-from typing import Optional
+from typing import List, Optional
 from sqlmodel import Field, Relationship
-from .base import Base
+from sqlalchemy import Column, String, Date
+from .base import Base, VARCHAR_100, VARCHAR_255, VARCHAR_50
 
 class User(Base, table=True):
     __tablename__ = "users"
 
     id: int = Field(default=None, primary_key=True)
-    account: str = Field(max_length=100, unique=True, nullable=False)
-    password: str = Field(max_length=255, nullable=False)
-
-    # 使用 SQLModel 的关系定义
-    user_info: "User_Info" = Relationship(
-        back_populates="users",
-        sa_relationship_kwargs={
-            "cascade": "all, delete-orphan",
-            "uselist": False
-        }
+    account: str = Field(
+        sa_type=VARCHAR_100,
+        unique=True,
+        index=True,
+        nullable=False
+    )
+    password: str = Field(
+        sa_type=VARCHAR_255,
+        nullable=False
     )
 
-class User_Info(Base, table=True):    
+    # 关联 UserInfo（一对一）
+    user_info: "User_Info" = Relationship(
+        back_populates="user",
+        cascade_delete=True
+    )
+
+class User_Info(Base, table=True):
     __tablename__ = "user_info"
 
-    # 主键：学号    
-    Stu_ID: str = Field(primary_key=True, max_length=100)
+    # 主键：学号 —— 必填
+    stu_id: str = Field(sa_type=VARCHAR_100, primary_key=True, description="学号")
 
-    # 基本信息    
-    name: str = Field(max_length=100, nullable=False)    
-    College: str = Field(max_length=100, nullable=False)    
-    Major: Optional[str] = Field(max_length=100, default=None)          # 专业    
-    Class_Name: Optional[str] = Field(max_length=100, default=None)     # 班级    
-    Grade: Optional[int] = Field(default=None)                          # 年级（如 2024）    
-    Gender: Optional[str] = Field(max_length=10, default=None)          # 性别    
-    Birth_Date: Optional[date] = Field(default=None)                   # 出生日期    
-    Enrollment_Date: Optional[date] = Field(default=None)              # 入学时间
+    # 核心信息（必填）
+    name: str = Field(sa_type=VARCHAR_100, nullable=False)
+    college: str = Field(sa_type=VARCHAR_100, nullable=False)
+    major: Optional[str] = Field(sa_type=VARCHAR_100, default=None)  # 可选
+    class_name: Optional[str] = Field(sa_type=VARCHAR_100, default=None)  # 可选
+    grade: Optional[int] = Field(default=None)  # 年级可空
+    gender: Optional[str] = Field(sa_type=String(10), default=None)
 
-    # 联系方式    
-    Phone: Optional[str] = Field(max_length=15, default=None)           # 手机号    
-    Email: Optional[str] = Field(max_length=100, default=None)          # 邮箱    
-    QQ: Optional[str] = Field(max_length=15, default=None)              # QQ 号    
-    Dormitory: Optional[str] = Field(max_length=50, default=None)       # 宿舍号
+    # 非核心信息（全部设为可选）
+    birth_date: Optional[date] = Field(
+        sa_column=Column("birth_date", Date, default=None, nullable=True)
+    )
+    enrollment_date: Optional[date] = Field(
+        sa_column=Column("enrollment_date", Date, default=None, nullable=True)
+    )
+    phone: Optional[str] = Field(sa_type=String(15), default="", nullable=True)
+    email: Optional[str] = Field(sa_type=VARCHAR_100, default="", nullable=True)
+    qq: Optional[str] = Field(sa_type=String(15), default="", nullable=True)
+    dormitory: Optional[str] = Field(sa_type=VARCHAR_50, default="", nullable=True)
 
-    # 其他    
-    Political_Status: Optional[str] = Field(max_length=20, default="群众")  # 政治面貌：群众/团员/党员等
+    political_status: Optional[str] = Field(sa_type=String(20), default="群众")  # 不强制“群众”
 
-    # 外键关联到 users 表    
+    # 外键
     user_id: int = Field(foreign_key="users.id", nullable=False)
 
-    # 关系映射    
-    users: "User" = Relationship(back_populates="user_info")
+    # 关系
+    user: User = Relationship(back_populates="user_info")
+    
+    def is_complete(self, required_fields: List[str] = None) -> bool:
+        """
+        检查指定必填字段是否都不为空（非None且非空字符串）
+        """
+        if required_fields is None:
+            required_fields = ["name", "college", "stu_id"]
+
+        for field in required_fields:
+            value = getattr(self, field, None)
+            if not value or (isinstance(value, str) and not value.strip()):
+                return False
+        return True

@@ -1,0 +1,10 @@
+fastapi>=0.119.0        
+uvicorn>=0.38.0
+sqlalchemy>=2.0.36
+httpx>=0.28.1
+jinja2>=3.1.5
+sqlmodel>=0.0.27
+alembic>=1.17.1
+passlib>=1.7.4
+dotenv>=0.9.9
+pyinstaller>=6.16.0

@@ -22,7 +22,7 @@ router = APIRouter()
 active_connections: List[WebSocket] = []
 
 @router.get("/room", response_class=HTMLResponse)
-async def chat_room_page(request: Request, current_user_id: str = Depends(get_current_user_id)):
+async def chat_room_page(request: Request, current_user_id: int = Depends(get_current_user_id)):
     client_ip = request.client.host
     logger.info(f"📋 User {current_user_id} accessing /room from IP: {client_ip}")
 
@@ -31,14 +31,14 @@ async def chat_room_page(request: Request, current_user_id: str = Depends(get_cu
         return RedirectResponse(url="/login")
 
     template = template_env.get_template("room.html")
-    user_result = await get_user_info(int(current_user_id))
-    stu_id = user_result['Stu_ID'] if user_result else "Unknown"
+    user_result = await get_user_info(current_user_id)
+    stu_id = user_result.user_id if user_result else "Unknown"
 
     content = template.render(debug_user=current_user_id, stu_id = stu_id)
     return HTMLResponse(content=content)
 
 @router.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket, current_user_id: str = None):
+async def websocket_endpoint(websocket: WebSocket, current_user_id: int = None):
     # 注意：FastAPI 中 WebSocket 不支持直接使用 Depends 在路径参数中，需手动解析
     try:
         # 手动从 cookie 提取 token 并验证
@@ -53,7 +53,7 @@ async def websocket_endpoint(websocket: WebSocket, current_user_id: str = None):
             return
 
         user_result = await get_user_info(current_user_id)
-        stu_id = user_result['Stu_ID'] if user_result else "Unknown"
+        stu_id = user_result.stu_id if user_result else "Unknown"
     except Exception as e:
         logger.error(f"WebSocket auth failed: {e}")
         await websocket.close(code=4001, reason="Authentication failed")
@@ -67,7 +67,6 @@ async def websocket_endpoint(websocket: WebSocket, current_user_id: str = None):
         while True:
             data = await websocket.receive_text()
             message_data = json.loads(data)
-            msg_type = message_data.get("type")
             content = message_data.get("content", "").strip()
 
             if not content:

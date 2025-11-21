@@ -1,25 +1,26 @@
-from sqlmodel import SQLModel, Field
-from sqlalchemy import Column, Text, DateTime, Index, text
+# backend/models/conversation.py
+from pydantic import BaseModel
+from sqlmodel import Field
+from sqlalchemy import Column, Text, Index
 from datetime import datetime
+from .base import Base,created_at_column
 
-class Conversation(SQLModel, table=True):
+class Conversation(Base, table=True):
     __tablename__ = "conversations"
 
     id: int = Field(default=None, primary_key=True)
-    user_id: int = Field(index=True)  # 用于分片查询
-    character_id: int = Field(foreign_key="characters.id")
 
-    user_message: str = Field(sa_column=Column(Text))
-    ai_message: str = Field(sa_column=Column(Text))
+    user_id: int = Field(index=True, nullable=False, description="用户ID")
+    character_id: int = Field(foreign_key="characters.id", nullable=False)
 
-    timestamp: datetime = Field(
-        default=None,
-        sa_column=Column(
-            DateTime, 
-            server_default=text('CURRENT_TIMESTAMP'), 
-            nullable=False
-        )
-    )
+    user_message: str = Field(sa_column=Column("user_message", Text))
+    ai_message: str = Field(sa_column=Column("ai_message", Text))
 
-# 创建复合索引加速查询
+    timestamp: datetime = Field(sa_column=created_at_column)
+
+class CreateConversationRequest(BaseModel):
+    character_id: int
+    user_message: str
+
+# 手动创建复合索引（在 metadata 创建时自动应用）
 Index("ix_conversation_user_char", Conversation.user_id, Conversation.character_id)

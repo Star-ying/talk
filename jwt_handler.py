@@ -1,6 +1,6 @@
 # backend/jwt_handler.py
 from datetime import datetime, timedelta, timezone
-from typing import Optional
+from typing import Any, Optional
 from fastapi import Cookie
 from jose import jwt, JWTError
 from passlib.hash import pbkdf2_sha256
@@ -52,7 +52,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     return encoded_jwt
 
 
-async def get_current_user_id(access_token: str = Cookie(None)) -> Optional[str]:
+async def get_current_user_id(access_token: str = Cookie(None)) -> Optional[Any]:
     """
     【异步依赖】从 HttpOnly Cookie 中提取 JWT 并解析出用户 ID（即 'sub' 字段）
     用于 FastAPI 的 Depends 注入系统做权限校验。
@@ -66,7 +66,7 @@ async def get_current_user_id(access_token: str = Cookie(None)) -> Optional[str]
         user_id: str = payload.get("sub")
         if user_id is None:
             return None
-        return user_id
+        return int(user_id)
     except JWTError:
         return None
     except Exception:

@@ -6,7 +6,7 @@ import json
 import logging
 
 from jwt_handler import get_current_user_id, verify_password, get_password_hash, create_access_token
-from backend.crud.user import check_user
+from backend.crud.user import check_user, get_user_info
 from backend.crud.character import get_all_characters
 from setting import ENV_CONFIG, FRONTEND_DIR
 
@@ -29,6 +29,12 @@ async def login_page():
     content = template.render()
     return HTMLResponse(content=content)
 
+@router.get("/write_info", response_class=HTMLResponse)
+async def info_page():
+    template = template_env.get_template("info_write.html")
+    content = template.render()
+    return HTMLResponse(content=content)
+
 @router.post("/login")
 async def login(request: Request):
     data = await request.json()
@@ -41,11 +47,8 @@ async def login(request: Request):
         return JSONResponse({"success": False, "message": "请输入用户名和密码"}, status_code=400)
 
     result = await check_user(account, hash_password)
-    if not result:
-        logger.warning(f"Login failed: user not found - {account}")
-        return JSONResponse({"success": False, "message": "用户名或密码错误"}, status_code=401)
 
-    user_id, hashed_password_from_db = result
+    user_id, hashed_password_from_db, state = result
 
     if not verify_password(password, hashed_password_from_db):
         logger.warning(f"Login failed: wrong password for user {account}")
@@ -55,9 +58,16 @@ async def login(request: Request):
     access_token_expires = timedelta(minutes=int(ENV_CONFIG.get("ACCESS_TOKEN_EXPIRE_MINUTES", 30)))
     access_token = create_access_token(data={"sub": str(user_id)}, expires_delta=access_token_expires)
 
-    logger.info(f"🔐 User {user_id} logged in successfully")
+    if state:
+        logger.info(f"🔐 User {user_id} logged in successfully")
+        data = await get_user_info(user_id)
+        if not data or not data.is_complete():
+            logger.info(f"🔐 User {user_id} has not completed informations")
+            state = False
+    else:
+        logger.info(f"🔐 User {user_id} registered successfully")
 
-    response = JSONResponse({"success": True, "account": account})
+    response = JSONResponse({"success": True, "account": account, "state": state})
     response.set_cookie(
         key="access_token",
         value=access_token,
@@ -69,7 +79,7 @@ async def login(request: Request):
     return response
 
 @router.get("/ai", response_class=HTMLResponse)
-async def chat_page(request: Request, current_user_id: str = Depends(get_current_user_id)):
+async def chat_page(request: Request, current_user_id: int = Depends(get_current_user_id)):
     client_ip = request.client.host
     logger.info(f"📋 User {current_user_id} accessing /user from IP: {client_ip}")
 
