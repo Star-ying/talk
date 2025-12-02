@@ -65,7 +65,32 @@ class AuthManager {
    * @returns {boolean}
    */
   static isAuthenticated() {
-    return !!this.getToken() && localStorage.getItem("isAuthenticated") === "true";
+    const token = this.getToken();
+    if (!token) return false;
+
+    try {
+      // 解码 JWT payload（第二段）
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const exp = payload.exp; // 过期时间戳（秒）
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (exp < currentTime) {
+        console.log("Token 已过期");
+        this.clearToken(); // 自动清理
+        return false;
+      }
+
+      // 自动修复 localStorage 状态
+      if (localStorage.getItem("isAuthenticated") !== "true") {
+        localStorage.setItem("isAuthenticated", "true");
+      }
+
+      return true;
+    } catch (e) {
+      console.error("无效 Token 格式", e);
+      this.clearToken();
+      return false;
+    }
   }
 
   /**

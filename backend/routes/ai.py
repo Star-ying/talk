@@ -6,12 +6,10 @@ import logging
 from jwt_handler import get_current_user_id
 from backend.crud import character, conversation
 from backend.models.conversation import CreateConversationRequest
-from setting import ENV_CONFIG
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/ai", tags=["AI_chat"])
-
 @router.post("/chat")
 async def dashscope_chat(
     request: Request,
@@ -25,7 +23,7 @@ async def dashscope_chat(
         raise HTTPException(status_code=401, detail="未授权访问")
 
     logger.info(f"💬 User {current_user_id} sending message from {client_ip}")
-    
+
     character_id = data.character_id
     user_message = data.user_message
 
@@ -46,19 +44,16 @@ async def dashscope_chat(
     """.strip()
 
     try:
-        API_KEY = ENV_CONFIG.get("DASHSCOPE_API_KEY")
-        if not API_KEY:
-            logger.error("❗ DASHSCOPE_API_KEY is not set")
-            raise HTTPException(status_code=500, detail="API密钥未配置")
+        # 使用本地 Ollama 服务地址（支持 OpenAI 兼容接口）
+        OLLAMA_BASE_URL = "http://localhost:11434"
+        MODEL_NAME = "qwen3:8b"
 
         headers = {
-            "Authorization": f"Bearer {API_KEY}",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         }
 
         payload = {
-            "model": "qwen-plus",
+            "model": MODEL_NAME,
             "messages": [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message}
@@ -69,30 +64,50 @@ async def dashscope_chat(
             "stream": False
         }
 
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with httpx.AsyncClient(timeout=180.0) as client:
             resp = await client.post(
-                "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+                f"{OLLAMA_BASE_URL}/v1/chat/completions",
                 json=payload,
                 headers=headers
             )
 
         if resp.status_code != 200:
             error_detail = resp.text
-            logger.error(f"☁️ Remote API error [{resp.status_code}]: {error_detail}")
+            logger.error(f"🤖 Ollama API error [{resp.status_code}]: {error_detail}")
             raise HTTPException(
                 status_code=resp.status_code,
-                detail=f"远程API错误: {error_detail}"
+                detail=f"Ollama 错误: {error_detail}"
             )
 
         result = resp.json()
-        reply = result["choices"][0]["message"]["content"].strip()
+        logger.info(f"🤖 Raw Ollama response: {result}")
 
+        # 安全访问嵌套字段
+        if not result.get("choices"):
+            logger.error("❌ Ollama returned no choices in response")
+            raise HTTPException(status_code=500, detail="模型未生成任何回复")
+        
+        choice = result["choices"][0]
+        message = choice.get("message", {})
+        content = message.get("content", "").strip()
+
+        if not content:
+            logger.warning("⚠️ Model returned empty content")
+            # 可以设置一个兜底回复
+            content = "嗯……我暂时不知道该怎么回答。"
+
+        reply = content
+
+        # 保存对话记录
         await conversation.save_conversation(current_user_id, character_id, user_message, reply)
 
-        logger.info(f"🤖 Reply generated for user {current_user_id}, length: {len(reply)} chars")
+        logger.info(f"✅ Reply generated for user {current_user_id}, length: {len(reply)} chars")
 
         return {"reply": reply}
 
+    except httpx.ConnectError:
+        logger.critical("❌ 无法连接到 Ollama 服务，请确认 'ollama serve' 是否已启动")
+        raise HTTPException(status_code=503, detail="无法连接到本地大模型服务（Ollama）")
     except Exception as e:
         import traceback
         error_msg = traceback.format_exc()

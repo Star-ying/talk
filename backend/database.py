@@ -1,8 +1,5 @@
 # backend/database.py
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy import text
-
-from backend.models.base import Base
 
 # ======================
 # 数据库配置
@@ -34,24 +31,3 @@ AsyncSessionLocal = async_sessionmaker(
     class_=AsyncSession,
     expire_on_commit=False
 )
-
-
-# ======================
-# 初始化数据库表（仅运行一次）
-# ======================
-async def init_db():
-    """初始化静态表（users, characters），不包括动态 conversations_* 表"""
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
-        # 确保 characters 表有默认数据（示例）
-        result = await conn.execute(text("SELECT COUNT(*) FROM characters"))
-        count = result.scalar()
-        if count == 0:
-            await conn.execute(
-                text("""
-                    INSERT INTO characters (name, trait) VALUES 
-                    ('Alice', 'cheerful and smart'),
-                    ('Bob', 'calm and logical')
-                """)
-            )

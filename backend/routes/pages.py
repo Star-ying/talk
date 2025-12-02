@@ -19,7 +19,7 @@ router = APIRouter()
 
 @router.get("/", response_class=HTMLResponse)
 async def home():
-    template = template_env.get_template("home.html")
+    template = template_env.get_template("index.html")
     content = template.render(debug_user=None)
     return HTMLResponse(content=content)
 
