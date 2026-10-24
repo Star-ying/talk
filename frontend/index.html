@@ -1,0 +1,106 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的网站主页</title>
+  <link rel="stylesheet" href="static/homestyle.css">
+
+  <!-- 🔁 引入全局认证模块 -->
+  <script src="/static/AuthManager.js" defer></script>
+</head>
+
+<body>
+  <!-- 公告栏 -->
+  <div class="announcement-bar">
+    🎉 新用户注册享首月免费体验！
+    <a href="/promo">立即查看活动详情</a>
+  </div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <img class="logo" src="static/liuying.png" width="60px">
+    <ul class="nav-links">
+      <li><a href="/">首页</a></li>
+      <li><a href="/about">关于</a></li>
+      <li class="dropdown">
+        <a>服务 ▼</a>
+        <ul class="dropdown-content">
+          <li><a href="#" class="protected-link" data-href="/room">学院聊天室</a></li>
+          <li><a href="#" class="protected-link" data-href="/ai">AI聊天</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact">联系</a></li>
+    </ul>
+    <div class="auth-buttons">
+      <!-- 登录/登出按钮将由 JS 动态控制 -->
+      <button id="auth-btn" class="btn btn-login">加载中...</button>
+    </div>
+  </nav>
+
+  <!-- 主体内容 -->
+  <div class="container">
+    <header>
+      <h1>欢迎来到 "我的AI"</h1>
+      <p class="lead">我们致力于为您提供最优质的服务与体验，让您的每一天都更高效、更轻松。</p>
+    </header>
+  </div>
+
+  <!-- ✅ 添加脚本：拦截受保护链接 -->
+  <script>
+    function checkTokenOnHome() {
+      const user_info = localStorage.getItem("isAuthenticated")
+
+      const authBtn = document.getElementById("auth-btn");
+
+      if (user_info) {
+        authBtn.textContent = "登出";
+        authBtn.onclick = function () {
+          if (confirm("确定要退出登录吗？")) {
+            localStorage.removeItem("account");
+            localStorage.removeItem("isAuthenticated");
+            alert("已退出登录");
+            location.reload();
+          }
+        };
+
+        // 解析 JWT payload（仅用于显示信息，不用于安全判断）
+        try {
+          const user_info = localStorage.getItem("account")
+          console.log("当前用户 账号:", user_info);
+        } catch (e) {
+          console.warn("无法解析 localStorage", e);
+        }
+
+      } else {
+        authBtn.textContent = "登录/注册";
+        authBtn.onclick = () => window.location.href = "/login";
+      }
+    }
+
+    // 页面加载完成后执行
+    document.addEventListener("DOMContentLoaded", () => {
+      checkTokenOnHome();
+
+      // 修复 protected-link 逻辑
+      document.querySelectorAll(".protected-link").forEach(link => {
+        link.addEventListener("click", function (e) {
+          const user_info = localStorage.getItem("isAuthenticated");
+          const targetUrl = this.getAttribute("data-href");
+          if (!user_info && targetUrl && !targetUrl.startsWith("/") && !targetUrl.startsWith("#")) {
+            e.preventDefault();
+            alert("请先登录！");
+            window.location.href = "/login";
+          }
+          else{
+            window.location.href = targetUrl;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

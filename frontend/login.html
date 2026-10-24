@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/login.css">
+  <title>用户登录</title>
+
+  <!-- 引入 React 和 Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- 🔁 引入全局认证模块 -->
+  <script src="/static/AuthManager.js" defer></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function Login() {
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const account = formData.get("account");
+        const password = formData.get("password");
+        const rememberMe = !!formData.get("remember");
+
+        try {
+          const res = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ account, password })
+          });
+
+          const result = await res.json();
+
+          if (result.success) {
+            // 使用全局 AuthManager 存储 token
+            AuthManager.setToken(result.token, rememberMe);
+            localStorage.setItem("account", account);
+            if (result.state){
+              alert(`登录成功！欢迎${account}`);
+              window.location.href = "/";
+            }
+            else {
+              alert("请填写信息");
+              window.location.href = "/write_info";
+            }
+          } else {
+            alert(result.message || "用户名或密码错误");
+          }
+        } catch (error) {
+          alert("网络错误，请稍后重试");
+          console.error("Login error:", error);
+        }
+      };
+
+      return (
+        <div className="login-container">
+          <h2>欢迎登录</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="account">用户名</label>
+              <input type="text" id="account" name="account" placeholder="请输入用户名" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">密码</label>
+              <input type="password" id="password" name="password" placeholder="请输入密码" required />
+            </div>
+            <div className="remember-me">
+              <input type="checkbox" id="remember" name="remember" value="true" />
+              <label htmlFor="remember">记住我</label>
+            </div>
+            <button type="submit" className="btn-login">登录</button>
+          </form>
+          <div className="links">
+            <a href="#">忘记密码？</a>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<Login />);
+  </script>
+</body>
+
+</html>
