@@ -44,13 +44,22 @@ async def dashscope_chat(
     """.strip()
 
     try:
-        # 使用本地 Ollama 服务地址（支持 OpenAI 兼容接口）
-        OLLAMA_BASE_URL = "http://localhost:11434"
-        MODEL_NAME = "qwen3:8b"
-
+        # ★2026-10-24 统一走 dora 兼容网关（OpenAI 协议）；配置来自项目根 .env（ENV_CONFIG）。
+        #   读不到 LLM_BASE_URL 时回落原本地 Ollama（localhost:11434/v1），向后兼容。
+        #   —— 原硬编码（留痕）：OLLAMA_BASE_URL="http://localhost:11434" / MODEL_NAME="qwen3:8b"
+        from setting import ENV_CONFIG
+        _base = (ENV_CONFIG.get("LLM_BASE_URL") or "").strip().rstrip("/")
+        MODEL_NAME = (ENV_CONFIG.get("LLM_MODEL") or "").strip() or "qwen3.8-flash"
+        _key = (ENV_CONFIG.get("LLM_API_KEY") or "").strip()
+        if not _base:
+            _base = "http://localhost:11434/v1"   # 回落原 Ollama（含 /v1）
+        # base 末尾已含 /v1（dora 与 Ollama 回落均是），统一拼 /chat/completions
+        _url = _base + "/chat/completions"
         headers = {
             "Content-Type": "application/json"
         }
+        if _key:
+            headers["Authorization"] = f"Bearer {_key}"   # dora 需；Ollama 忽略无害
 
         payload = {
             "model": MODEL_NAME,
@@ -66,7 +75,7 @@ async def dashscope_chat(
 
         async with httpx.AsyncClient(timeout=180.0) as client:
             resp = await client.post(
-                f"{OLLAMA_BASE_URL}/v1/chat/completions",
+                _url,
                 json=payload,
                 headers=headers
             )
